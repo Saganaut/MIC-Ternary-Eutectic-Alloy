@@ -1,13 +1,13 @@
 # Site settings
 
-title: Project Pages
+title: Phase Field Models of Ternary Eutectoid Alloys
 header-img: img/home-bg.jpg
-email: your-email@yourdomain.com
-description: "Write your site description here. It will be used as your sites meta description as well!"
-baseurl: "/project-pages"
-url: "http://matin-hub.github.io"
-github_username:  matin-hub
-project_repository: project-pages
+email: aiskakov3@gatech.edu
+description: "Process-Structure Linkage of Ternary Eutectoid Al Alloy"
+baseurl: "/project8883"
+url: "http://aiskakov.github.io"
+github_username:  aiskakov
+project_repository: project8883
 
 # Build settings
 # Don't change these variables
