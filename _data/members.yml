@@ -1,12 +1,12 @@
 # Members
 
-- name: Ahmet Cecen
+- name: Almambet Iskakov
   role: Data Scientist / Material Informatics
-  img: https://avatars1.githubusercontent.com/u/7231251?v=3&s=460
-  github: ahmetcecen
-  gplus: https://plus.google.com/+AhmetCecen-GPlus
-  bio: Ahmet Cecen is currently pursuing a PhD in Computational Science and Engineering at Georgia Institute of Technology.  He earned a bachelor’s degree in Mechanical Engineering at Drexel University. Ahmet has been doing research in the fields of computational materials science and materials informatics for the past 6 years, throughout his undergraduate and graduate studies. His current research focus is on leveraging statistical analysis and machine learning tools to solve big data analytics problems in materials science. 
-  url: http://ahmetcecen.github.io/
+  img: img/almambet.png
+  github: aiskakov
+  gplus: 
+  bio: Almambet is a graduate student in Mechanical Engineering at Georgia Institute of Technology. He earned his Bachelor's Degree in Mechanical Engineering in 2010 from University of Maryland College Park. He joined the MINED group in 2015. 
+  url: http://mined.gatech.edu/members/almambet-iskakov/
    
 - name: Robert Pienta
   role: Data Scientist - C
@@ -15,3 +15,4 @@
   bio: Robert is a PhD student in the School of Computational Science and Engineering at Georgia Institute of Technology. He earned his bachelor’s degree in Computer Science and Mathematics at Rose-Hulman Institute of Technology.  Robert works on large scale graph datamining problems, especially in the area of graph querying.
   url: http://www.cc.gatech.edu/~rpienta3/
   
+
