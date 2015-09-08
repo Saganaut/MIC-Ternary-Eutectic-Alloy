@@ -10,7 +10,7 @@
    
 - name: Robert Pienta
   role: Data Scientist - C
-  img: img/pienta.png
+  img: ../img/pienta.png
   github: saganaut
   bio: Robert is a PhD student in the School of Computational Science and Engineering at Georgia Institute of Technology. He earned his bachelor’s degree in Computer Science and Mathematics at Rose-Hulman Institute of Technology.  Robert works on large scale graph datamining problems, especially in the area of graph querying.
   url: http://www.cc.gatech.edu/~rpienta3/
