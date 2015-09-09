@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Ternary Eutectic Alloy (Ag-Al-Cu) - Ternary Alloy Basics
+title:      Ternary Eutectic Alloy - Basics
 date:       2015-09-08 12:00:00
 author:     Almambet Iskakov
 tags: 		
