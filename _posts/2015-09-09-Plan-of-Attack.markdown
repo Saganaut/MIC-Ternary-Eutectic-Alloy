@@ -22,7 +22,7 @@ We will both build on the successful prior work of others, as well as investigat
 
 ### Computational Challenges
 The initial work using this data tackled many computational issues:
-![Plan Overview](/../img/poa_overview "Overview of workflow")
+![Plan Overview](/../img/poa_overview.png "Overview of workflow")
 
 1. Finding sub-image invariant features (intra-sample features that remain constant). This problem is slightly simplified in our case since we only have data from one length-scale.
 	* n-point statistics (like n=3 in our case) have been successfully leveraged for this purpose by [Niezgoda et al.](http://www.sciencedirect.com/science/article/pii/S1359645408004886#)
