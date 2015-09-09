@@ -52,7 +52,7 @@ Finally, to visualize directional solidification, the following picture is a gro
 * Al<sub>2</sub>Cu - blue
 * Ag<sub>2</sub>Al - green
 
-![micrograph](/project8883/img/directional-growth.png)
+![directionalgrowth](/project8883/img/directional-growth.png)
 
 
 
