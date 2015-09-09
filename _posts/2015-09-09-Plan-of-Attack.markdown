@@ -16,6 +16,7 @@ Given the large and varied amount of simulation data we have, there will be seve
  * solidification velocity;
 
  and the outputs:
+
  * final n x m x k, microstructure tensor;
 
 We will both build on the successful prior work of others, as well as investigate alternative approaches at different points during the mapping of linkages between the available data.
@@ -34,8 +35,10 @@ The initial work using this data tackled many computational issues:
 
 ### Risks
 Major:
+
 * We still have yet to receive the dataset; however, we should have access to it shortly through Yuksel.
 * We may not have enough variation in the intial conditions to be able to say anything really inciteful about process-structure linkages in eutectoid Al solidification.
 
 Minor:
+
 * I (Robert) am likely to abuse all this new domain jargon until corrected by members of the class.  Feel free to comment, since comments offer a way for both other students to get their required quota done and for me to learn.
