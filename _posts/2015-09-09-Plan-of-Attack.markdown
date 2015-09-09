@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Post Headline
+title:      Plan of Attack
 date:       2015-09-09 12:00:00
 author:     Robert Pienta
 tags: 		PoA, plans, plan of attack
@@ -10,6 +10,7 @@ tags: 		PoA, plans, plan of attack
 
 ### Modeling Process-Structure Linkages Overview
 Given the large and varied amount of simulation data we have, there will be several computational challenges involved with the project.  To model the mapping between the process and structure we will have to find a way to correlate the simulated process inputs:
+
  * n x m x k, initial condition microstructure tensor;
  * volume-fraction of Al, Ag<sub>2</sub>Al, and Al<sub>2</sub>Cu;
  * solidification velocity;
@@ -21,7 +22,7 @@ We will both build on the successful prior work of others, as well as investigat
 
 ### Computational Challenges
 The initial work using this data tackled many computational issues:
-![Plan Overview](../img/poa_overview "Overview of workflow")
+![Plan Overview](/../img/poa_overview "Overview of workflow")
 
 1. Finding sub-image invariant features (intra-sample features that remain constant). This problem is slightly simplified in our case since we only have data from one length-scale.
 	* n-point statistics (like n=3 in our case) have been successfully leveraged for this purpose by [Niezgoda et al.](http://www.sciencedirect.com/science/article/pii/S1359645408004886#)
