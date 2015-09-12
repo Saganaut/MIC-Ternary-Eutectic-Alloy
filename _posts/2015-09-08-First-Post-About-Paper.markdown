@@ -20,7 +20,7 @@ In this alloy, the eutectic ratios by mole fraction are 0.18 Ag, 0.69 Al, and 0.
 
 **Ternary Phase Diagram** - a 2- or 3-dimensional phase diagram that represents concentrations and phases of three components (a,b,c). There are four external variables that constitute a complete representation of a ternary system, ratio of any two components, temperature, and pressure. However, the ternary phase diagrams usually are depicted while one or two of the variable are kept constant. (How to read ternary phase diagrams, [here](https://www.uwgb.edu/dutchs/Petrology/Teutect.htm) and [here](http://www.asminternational.org/documents/10192/1849770/05342G_Sample_BuyNow.pdf/230f1568-32a2-4669-a03d-b33278ca8825))
 
-![micrograph](/project8883/img/liquidus-diagram.jpg)
+![micrograph](/Materials-Informatics-Class-Fall2015/img/liquidus-diagram.jpg)
 A 2-D liquidus (liquid state) diagram for Ag-Al-Cu system.
 
 **Directional solidification** - a process of solidification within castings where the liquid metal solidifies in one direction and the interface of the solidifying metal is always in contact with liquid metal (feed metal).
@@ -34,7 +34,7 @@ When the solidified Ag-Al-Cu alloy is formed, microstructure patterns form, cons
 * Al<sub>2</sub>Cu - grey
 * Ag<sub>2</sub>Al - white
 
-![micrograph](/project8883/img/micrograph.png)
+![micrograph](/Materials-Informatics-Class-Fall2015/img/micrograph.png)
 
 As the temperature of the liquid solution decreases, solid phases begin to form in the alloy. These phases do not necessarily form at the same time. The phase with the higher concentration will crystalize first and then the phase with next highest concentration will be next to solidify. 
 
@@ -53,7 +53,7 @@ Finally, to visualize directional solidification, the following picture is a gro
 * Al<sub>2</sub>Cu - blue
 * Ag<sub>2</sub>Al - green
 
-![directionalgrowth](/project8883/img/directional-growth.png)
+![directionalgrowth](/Materials-Informatics-Class-Fall2015/img/directional-growth.png)
 
 
 
