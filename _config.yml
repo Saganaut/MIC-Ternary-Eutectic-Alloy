@@ -4,10 +4,10 @@ title: Phase Field Models of Ternary Eutectoid Alloys
 header-img: img/home-bg.png
 email: aiskakov3@gatech.edu
 description: "Process-Structure Linkage of Ternary Eutectoid Al Alloy"
-baseurl: "/project8883"
-url: "http://aiskakov.github.io"
+baseurl: "/MIC-Ternary-Eutectic-Alloy"
+url: "http://Materials-Informatics-Class-Fall2015.github.io"
 github_username:  aiskakov
-project_repository: project8883
+project_repository: MIC-Ternary-Eutectic-Alloy
 
 # Build settings
 # Don't change these variables
