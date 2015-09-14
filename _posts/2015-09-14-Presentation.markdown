@@ -33,6 +33,15 @@ vertical:		</section><section markdown="1">
 
 {{ page.horizontal }}
 
+## Simulation in action
+
+<video width="435" height="343" controls>
+  <source src="/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/800_1_pp1_film_slo_mo.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+{{ page.horizontal }}
+
 ## Extracting Features
 
 * we have already started generating spatial statistics (correlations) for our data
