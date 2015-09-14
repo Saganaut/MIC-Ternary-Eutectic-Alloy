@@ -30,6 +30,16 @@ vertical:		</section><section markdown="1">
  * Align phases/structures parallel to growth direction 
  * Achieve desired material properties
 
+![2D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/directional-solidification.png)
+
+{% raw  %}{{ page.horizontal }}{% endraw %} 
+
+{{ page.vertical }}
+
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/directional-solid-3d.png)
+
+ {% raw  %}{{ page.vertical }}{% endraw %}
+
 {{ page.horizontal }}
 
 ## The Data
