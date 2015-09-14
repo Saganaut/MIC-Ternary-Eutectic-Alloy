@@ -78,7 +78,7 @@ Phases evolve parallel to growth direction.
 
 ![ternary-diagram](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/ternary-diagram.png)
 
-* In this Al, Ag, Cu alloy, the eutectic ratios by mole fraction at  at 773.6K are 
+* In this Al, Ag, Cu alloy, the eutectic ratios by mole fraction at 773.6K:
   * 18% Ag   (25% experimental)
   * 69% Al    (62% experimental)
   * 13% Cu   (14% experimental)
