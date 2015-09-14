@@ -136,14 +136,23 @@ Phases evolve parallel to growth direction.
 
 {{ page.horizontal }}
 
-## Computational Plans
+## Computational Plans 
+__Next Steps__
 
 * Use dimensionality reduction (DR) over our large space of spatial statistics:
   * Conventional PCA 
   * Newer low-rank approximation DR techniques
-  * (possibly) Attempt to use locality sensitive hashing  
+  * (possibly) Attempt to use locality sensitive hashing
 
-{{ page.horizontal }}
+{{ page.vertical }}
+
+* Model the relationship between our simulated solidification processes
+  * linear model (regression)
+    * interpretable
+    * simple model, unlikely that the features will be linear 
+  * nonlinear model (kernel methods)
+    * can model complex relationships
+
 
 <!-- End Here -->
 {{ page.horizontal }}
