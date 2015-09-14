@@ -89,7 +89,7 @@ Phases evolve parallel to growth direction.
 
 ![colored-phases](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/colored-phases.png)
 
-* Represents cross-section through solidified material close to solidification front
+* A cross-section of solidified material close to solidification front
 * Most continuous phase: Al
 * Chained brick-like structure: Al<sub>2</sub>Cu and Ag<sub>2</sub>Al
 
