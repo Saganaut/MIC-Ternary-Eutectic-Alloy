@@ -1,7 +1,7 @@
 ---
 layout:     	slide
 title:     		Phase Field Models of Ternary Eutectoid Alloys
-date:      	2015-09-14 03:00 
+date:      	2015-09-14 
 author:     	Almambet Iskakov, Robert Pienta
 
 theme:		night # default/beige/blood/moon/night/serif/simple/sky/solarized
@@ -19,8 +19,28 @@ vertical:		</section><section markdown="1">
 
 #### {{ page.date | | date: "%I %M %p ,%a, %b %d %Y"}}
 
-{{ page.horizontal }}
+{% raw  %}{% endraw %} {{ page.horizontal }}
 <!-- Start Writing Below in Markdown -->
+
+
+##Background
+
+* Directional Solidification of Al, Ag, Cu Eutectic Alloy
+ * Control structure during solidification process
+ * Align phases/structures parallel to growth direction 
+ * Achieve desired material properties
+
+![2D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/directional-solidification.png)
+
+
+
+{% raw  %} {% endraw %}{{ page.vertical }}
+
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/directional-solid-3d.png)
+
+
+
+{{ page.horizontal }}
 
 ## The Data
 
