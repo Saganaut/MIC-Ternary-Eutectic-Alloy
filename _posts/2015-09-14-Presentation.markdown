@@ -19,7 +19,7 @@ vertical:		</section><section markdown="1">
 
 #### {{ page.date | | date: "%I %M %p ,%a, %b %d %Y"}}
 
-{% raw  %}{{ page.horizontal }}
+{{ page.horizontal }}{% raw  %}
 <!-- Start Writing Below in Markdown -->
 
 
@@ -34,7 +34,7 @@ vertical:		</section><section markdown="1">
 
 {% endraw %} 
 
-{% raw  %}{{ page.vertical }}
+{{ page.vertical }}{% raw  %}
 
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/directional-solid-3d.png)
 
