@@ -89,7 +89,7 @@ Phases evolve parallel to growth direction.
 
 * Represents cross-section through solidified material close to solidification front
 * Most continuous phase: Al
-* Chained brick-like structure: Al2Cu and Ag2Al
+* Chained brick-like structure: Al<sub>2</sub>Cu and Ag<sub>2</sub>Al
 
 {{ page.horizontal }}
 ##Common Microstructure Patterns
