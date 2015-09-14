@@ -41,11 +41,13 @@ vertical:		</section><section markdown="1">
 ##Phase-Field Simulation: Solidification
 
 * Solidification Model:
- * Simulate growth of phases 
- * Thermodynamic model
- * Concentration model
- * Three phase metal
- * Varied Parameters: Temperature Gradient and Gradient Velocity
+  * Simulate growth of phases 
+  * Thermodynamic model
+  * Concentration model
+  * Three phase metal
+  * Varied Parameters: Temperature Gradient and Gradient Velocity
+
+{{ page.vertical }}
 
 ![Boundary-Conditions](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/boundary-conditions.png)
 
@@ -68,8 +70,8 @@ Phases evolve parallel to growth direction.
 ![Binary Phases](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/binary-diagram.png)
 
 * Eutectic mixture:
- * Liquid transforms into two different phases
- * Lowest melting/freezing temperature
+  * Liquid transforms into two different phases
+  * Lowest melting/freezing temperature
 
 
 {% raw  %}{% endraw %}{{ page.vertical }}
@@ -77,9 +79,9 @@ Phases evolve parallel to growth direction.
 ![ternary-diagram](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/ternary-diagram.png)
 
 * In this Al, Ag, Cu alloy, the eutectic ratios by mole fraction at  at 773.6K are 
- * 18% Ag   (25% experimental)
- * 69% Al    (62% experimental)
- * 13% Cu   (14% experimental)
+  * 18% Ag   (25% experimental)
+  * 69% Al    (62% experimental)
+  * 13% Cu   (14% experimental)
 
 {{ page.horizontal }}
 
@@ -105,7 +107,8 @@ Phases evolve parallel to growth direction.
   * Simulated with varied solidification velocities
   * Varied volume-fractions of Al, Ag<sub>2</sub>Al, and Al<sub>2</sub>Cu
   * Plenty of measurements!
-    * An 800x800 sample with 400 time steps has 256 million data points
+    * An 800x800x4256 sample has 2.72 billion data points
+      * This simulation took 16 hours on 13700 cores! 
 
 {{ page.horizontal }}
 
@@ -114,24 +117,26 @@ Phases evolve parallel to growth direction.
 <!-- <iframe width="420" height="315" src="http://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe> -->
 <iframe width="436" height="344" src="http://www.youtube.com/embed/ZlDdydWGbA4" frameborder="0" allowfullscreen>
 </iframe>
-
+Al = Green, Ag<sub>2</sub>Al = Orange, and Al<sub>2</sub>Cu = Blue
 
 {{ page.horizontal }}
 
 ## Extracting Features
 
-* we have already started generating spatial statistics (correlations) for our data
+We have already started generating spatial statistics (correlations) for our data
 
 ![Correlations](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/correlations.png)
 
+0 = Al, 1 = Ag<sub>2</sub>Al, and 3 = Al<sub>2</sub>Cu
+
 {{ page.horizontal }}
   
-## Time-varying distributions
+## Distance-varying Distributions
 
-* Our simulated microstructures vary through the course of each simulation
-* We can sample the approximate steady-state, solidified structure, 
+* The simulated microstructures vary through the course of each simulation
+* We can sample the approximate steady-state, solidified structure at various times, 
   * using the difference between successive spatial statistics 
-  * or just using one of the last time steps (assuming that the simulation was run until a steady state was reached)
+  * or just using one of the last time/height steps (assuming that the simulation was run until a steady state was reached)
 * We may later consider the changes in spatial statistics over time to help mine the Process-Structure linkages
 
 {{ page.horizontal }}
@@ -149,9 +154,10 @@ __Next Steps__
 * Model the relationship between our simulated solidification processes
   * linear model (regression)
     * interpretable
-    * simple model, unlikely that the features will be linear 
+    * simple model, unlikely that Eutectoid Al has linear structural relationships  
   * nonlinear model (kernel methods)
-    * can model complex relationships
+    * less interpretable
+    * complex model, can model complex relationships
 
 
 <!-- End Here -->
