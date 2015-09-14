@@ -35,10 +35,10 @@ vertical:		</section><section markdown="1">
 
 ## Simulation in action
 
-<video width="435" height="343" controls>
-  <source src="/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/800_1_pp1_film_slo_mo.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
+<!-- <iframe width="420" height="315" src="http://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe> -->
+<iframe width="436" height="344" src="http://www.youtube.com/embed/ZlDdydWGbA4" frameborder="0" allowfullscreen>
+</iframe>
+
 
 {{ page.horizontal }}
 
