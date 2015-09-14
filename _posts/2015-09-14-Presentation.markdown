@@ -98,12 +98,6 @@ Phases evolve parallel to growth direction.
 
 {{ page.horizontal }}
 
-*Eutectic mixture:
- *Liquid transforms into two different phases
- *Lowest melting/freezing temperature
-
-{{ page.horizontal }}
-
 ## The Data
 
 * More than 20 simulations
