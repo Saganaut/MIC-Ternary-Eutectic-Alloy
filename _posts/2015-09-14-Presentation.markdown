@@ -19,7 +19,7 @@ vertical:		</section><section markdown="1">
 
 #### {{ page.date | | date: "%I %M %p ,%a, %b %d %Y"}}
 
-{{ page.horizontal }}
+{% raw  %}{{ page.horizontal }}
 <!-- Start Writing Below in Markdown -->
 
 
@@ -32,13 +32,13 @@ vertical:		</section><section markdown="1">
 
 ![2D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/directional-solidification.png)
 
-{% raw  %}{{ page.horizontal }}{% endraw %} 
+{% endraw %} 
 
-{{ page.vertical }}
+{% raw  %}{{ page.vertical }}
 
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/directional-solid-3d.png)
 
- {% raw  %}{{ page.vertical }}{% endraw %}
+ {% endraw %}
 
 {{ page.horizontal }}
 
