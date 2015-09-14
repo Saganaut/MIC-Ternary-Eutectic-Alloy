@@ -53,16 +53,10 @@ vertical:		</section><section markdown="1">
 
 ## Computational Plans
 
-* Use dimensionality reduction over our large space of  
-
-{{ page.horizontal }}
-
-## Simulation in action
-
-<video width="435" height="343" controls>
-  <source src="/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/800_1_pp1_film_slo_mo.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
+* Use dimensionality reduction (DR) over our large space of spatial statistics:
+  * Conventional PCA 
+  * Newer low-rank approximation DR techniques
+  * (possibly) Attempt to use locality sensitive hashing  
 
 {{ page.horizontal }}
 
