@@ -27,6 +27,7 @@ vertical:		</section><section markdown="1">
 * More than 20 simulations
   * Resolution from 200x200 to over 2000x2000
   * Simulated with varied solidification velocities
+  * Varied volume-fractions of Al, Ag<sub>2</sub>Al, and Al<sub>2</sub>Cu
   * Plenty of measurements!
     * An 800x800 sample with 400 time steps has 256 million data points
 
@@ -36,20 +37,23 @@ vertical:		</section><section markdown="1">
 
 * we have already started generating spatial statistics (correlations) for our data
 
-![Correlations](/project-pages/img/milestone1_pres/correlations.png)
+![Correlations](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/correlations.png)
 
 {{ page.horizontal }}
   
 ## Time-varying distributions
 
 * Our simulated microstructures vary through the course of each simulation
-* we cannot expect the spatial statistics to perform this alone
+* We can sample the approximate steady-state, solidified structure, 
+  * using the difference between successive spatial statistics 
+  * or just using one of the last time steps (assuming that the simulation was run until a steady state was reached)
+* We may later consider the changes in spatial statistics over time to help mine the Process-Structure linkages
 
 {{ page.horizontal }}
 
 ## Computational Plans
 
-* Consider 
+* Use dimensionality reduction over our large space of  
 
 {{ page.horizontal }}
 
