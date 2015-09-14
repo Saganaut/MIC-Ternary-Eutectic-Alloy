@@ -40,12 +40,12 @@ vertical:		</section><section markdown="1">
 
 ##Phase-Field Simulation: Solidification
 
-*Solidification Model:
- *Simulate growth of phases 
- *Thermodynamic model
- *Concentration model
- *Three phase metal
- *Varied Parameters: Temperature Gradient and Gradient Velocity
+* Solidification Model:
+ * Simulate growth of phases 
+ * Thermodynamic model
+ * Concentration model
+ * Three phase metal
+ * Varied Parameters: Temperature Gradient and Gradient Velocity
 
 ![Boundary-Conditions](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/boundary-conditions.png)
 
@@ -67,19 +67,19 @@ Phases evolve parallel to growth direction.
 
 ![Binary Phases](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/binary-diagram.png)
 
-*Eutectic mixture:
- *Liquid transforms into two different phases
- *Lowest melting/freezing temperature
+* Eutectic mixture:
+ * Liquid transforms into two different phases
+ * Lowest melting/freezing temperature
 
 
 {% raw  %}{% endraw %}{{ page.vertical }}
 
 ![ternary-diagram](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/ternary-diagram.png)
 
-*In this Al, Ag, Cu alloy, the eutectic ratios by mole fraction at  at 773.6K are 
- *18% Ag   (25% experimental)
- *69% Al    (62% experimental)
- *13% Cu   (14% experimental)
+* In this Al, Ag, Cu alloy, the eutectic ratios by mole fraction at  at 773.6K are 
+ * 18% Ag   (25% experimental)
+ * 69% Al    (62% experimental)
+ * 13% Cu   (14% experimental)
 
 {{ page.horizontal }}
 
@@ -87,9 +87,9 @@ Phases evolve parallel to growth direction.
 
 ![colored-phases](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/colored-phases.png)
 
-*Represents cross-section through solidified material close to solidification front
-*Most continuous phase: Al
-*Chained brick-like structure: Al2Cu and Ag2Al
+* Represents cross-section through solidified material close to solidification front
+* Most continuous phase: Al
+* Chained brick-like structure: Al2Cu and Ag2Al
 
 {{ page.horizontal }}
 ##Common Microstructure Patterns
