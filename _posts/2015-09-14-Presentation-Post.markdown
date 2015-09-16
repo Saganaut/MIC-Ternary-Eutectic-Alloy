@@ -1,6 +1,6 @@
 ---
 layout:       post
-title:        First Presentation Comments
+title:        First Presentation Post (For Comments)
 date:       2015-09-14 
 author:       Almambet Iskakov, Robert Pienta
 tags:     presentation
