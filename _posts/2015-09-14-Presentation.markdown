@@ -1,6 +1,6 @@
 ---
 layout:     	slide
-title:     		Phase Field Models of Ternary Eutectoid Alloys
+title:     		Phase Field Models of Ternary Eutectoid Alloys (Presentation 1)
 date:      	2015-09-14 
 author:     	Almambet Iskakov, Robert Pienta
 
