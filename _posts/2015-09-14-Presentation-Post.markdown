@@ -1,6 +1,6 @@
 ---
 layout:       post
-title:        Ternary Eutectoid Al Alloy First Presentation
+title:        First Presentation Comments
 date:       2015-09-14 
 author:       Almambet Iskakov, Robert Pienta
 tags:     presentation
