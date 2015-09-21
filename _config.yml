@@ -8,6 +8,7 @@ baseurl: "/MIC-Ternary-Eutectic-Alloy"
 url: "http://Materials-Informatics-Class-Fall2015.github.io"
 github_username:  aiskakov
 project_repository: MIC-Ternary-Eutectic-Alloy
+disqus_shortname: project-pages
 
 # Build settings
 # Don't change these variables
