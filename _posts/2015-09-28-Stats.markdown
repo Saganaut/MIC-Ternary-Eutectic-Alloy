@@ -3,7 +3,6 @@ layout:     post
 title:      Subtleties in 2-pt Statistics
 date:       2015-09-28 12:00:00
 author:     Almambet Iskakov
-tags: 		result
 ---
 <!-- Start Writing Below in Markdown -->
 
