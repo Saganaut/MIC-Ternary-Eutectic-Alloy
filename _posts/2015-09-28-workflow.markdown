@@ -1,0 +1,19 @@
+---
+layout:     post
+title:      Detailed Workflow  
+date:       2015-09-28 12:00:00
+author:     Robert Pienta
+---
+<!-- Start Writing Below in Markdown -->
+
+#Detailed Workflow:
+~WORK IN PROGRESS~
+
+#Inputs
+
+#Outputs
+
+#Challenges and Opporunities 
+
+
+

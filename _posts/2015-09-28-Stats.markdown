@@ -1,0 +1,18 @@
+---
+layout:     post
+title:      Subtleties in 2-pt Statistics
+date:       2015-09-28 12:00:00
+author:     Almambet Iskakov
+tags: 		result
+---
+<!-- Start Writing Below in Markdown -->
+
+#Headers:
+
+##2-Pt Statistics 
+~WORK IN PROGRESS~
+* cover 2-pt stats for our data
+  * Periodic etc...
+* future work, how to aggregate each blocks varied structure? 
+
+
