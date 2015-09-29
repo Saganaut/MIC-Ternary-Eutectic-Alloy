@@ -7,13 +7,40 @@ author:     Robert Pienta
 <!-- Start Writing Below in Markdown -->
 
 #Detailed Workflow:
-~WORK IN PROGRESS~
+After meeting with Dr. Kalidindi and Yuksel we have clarified what our overall goals are and several methods to get there.
+We will continue to attempt to infer a mapping between the input space (3-dimensional real numbers) and the output space (r-dimensional real numbers).
+We already have the outputs we will use. 
+We do not have the principal components yet, but we are close to having found them.
+![Plan Overview](/MIC-Ternary-Eutectic-Alloy/img/workflow/overview.png "Overview of linkage")
+We want to use a method to infer some mapping from the green axis to the orange axis in the figure above.
+We will start with linear regression and then other methods thereafter. 
 
-#Inputs
+##Inputs - Y 
+* % Ag
+* % Cu
+* Solidification Velocity
+ 
+##Outputs - X 
+* Principal component scores for the first r largest components.
 
-#Outputs
+##Assumptions
+We have assumed that any runs with different random instatiations of the initial volume fraction will converge to approximately the same values in 2-point statistical space. 
+This assumption is a little bit heavy; however, we have some support for it based on experiments run by Yuksel. 
+At the current time, the risk from this assumption is relatively low. 
 
-#Challenges and Opporunities 
+#Challenges and Opportunities 
+The following diagram shows a detailed workflow, or rather dataflow, of our project.
+The arrows represent small discreet techniques, often only a few lines of code per transition.
+The diagram goes from the starting .mat data to the final regression coeffs to map our inputs and outputs.
+![dataflow](/MIC-Ternary-Eutectic-Alloy/img/workflow/dataflow.png "Dataflow & Workflow")
+We have completed up to the PCA step with one major caveat in the "Average or RVE" step on the right. 
+Almambet will cover this issue in more detail in a separate blog post.
+In short we will:
 
-
+* reduce each volume down to a single representative 2-point statistic,
+* run PCA over the 2-pt stats all j simulations, 
+* calculate how many principal components are needed by looking at the fraction of the singular values over the total of singular values
+* reduce each micostructure to the smaller PCA-reduced space (as r PCA scores)
+* fit a linear estimator from these PCA scores to the initial conditions (e.g. volume fraction and solidification velocity)
+* ~Possibly~ see if we can reconstruct an approximation all the way back to a "real micostructure"
 
