@@ -49,6 +49,12 @@ def get_correlations_for_slice(al_data_slice):
   correlations = correlate(disc_basis, periodic_axes=(0, 1))
   return correlations
 
+# Extracts the "best slice" of the block,
+# Currently takes the slice 10th from the end
+def get_best_slice(al_data_slice):
+  # TODO come up with a better way to summarize the block
+  return al_data_slice[-10:]
+
 
 #~~~~~~~MAIN~~~~~~~
 if __name__ == '__main__':
