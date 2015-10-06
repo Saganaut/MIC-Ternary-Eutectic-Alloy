@@ -89,7 +89,7 @@ Steps with unanticipated challenges:
 ##PCA
 
 * Sample Result:
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/2pt-file-here.png)
+![pca](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/pca.png)
 
 
 
