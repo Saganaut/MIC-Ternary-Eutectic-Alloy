@@ -87,9 +87,9 @@ Steps with unanticipated challenges:
 
 {{ page.horizontal }}
 ##PCA
-
-* Sample Result:
-![pca](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/pca.png)
+Simulated Volumes in PCA-Component-Space
+![pca](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/pca.png) 
+(grouped by solidification vel.)
 
 
 
@@ -98,12 +98,30 @@ Cumulative Variance by PCA Component
 ![tradeoff](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/decay.png)
 Encouraging singular-value fall-off characteristics
 
+
+
 {{ page.horizontal }}
 ##Linkage Overview
 Multivariate regression problem:
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/workflow/overview.png)
 
 
+
+{{ page.vertical }} 
+##Linkage and its application
+![linksteps](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/link_steps.jpg)
+
+From a vol-fraction and solidification vel. to "a microstructure".
+
+
+{{ page.vertical }} 
+##Ongoing Work
+* We are currently working on cross-validation for our pipeline.
+  * Originally wanted k-fold cross validation, but...
+
+  * That's leave-one-out for ~10 data points.
+
+* We have not completed the reconstruction code, but can produce everything up to it.
 
 {{ page.horizontal }}
 ##Challenges
