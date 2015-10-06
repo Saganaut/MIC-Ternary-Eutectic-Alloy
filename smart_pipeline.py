@@ -21,7 +21,8 @@ from sklearn.linear_model import LinearRegression
 def load_data(filename):    
   data = sio.loadmat(filename)
   # The line below is because the matlab format has to be "unstructed"
-  return shuffle_ndarray(data[data.keys()[0]])
+  #print data['phase_field_solid']
+  return shuffle_ndarray(data['phase_field_model'])
 
 
 # The pymks takes a different format of data than our .mat data
@@ -45,7 +46,7 @@ def load_metadata(filename):
                        'sv':float(row[2]), 
                        'x':int(row[3]), 
                        'y':int(row[4]), 
-                       'filename':row[5]})
+                       'filename':row[5]+'.mat'})
   return metadata
 
 
@@ -60,7 +61,7 @@ def get_best_slice(al_data_slice):
 if __name__ == '__main__':
   # Load the metadata
   print "-->Loading Metadata"
-  metadata = load_metadata('data/test.tsv')
+  metadata = load_metadata('data/metadata_all.tsv')
   
   # Set up the inputs and output containers 
   samples = len(metadata)
@@ -73,7 +74,7 @@ if __name__ == '__main__':
   for metadatum in metadata:
     # Load data frames
     print "--->Loading: " + metadatum['filename']
-    metadatum['data'] = load_data('data/'+metadatum['filename'])
+    metadatum['data'] = load_data('data/test/'+metadatum['filename'])
     # Get a representative slice from the block (or ave or whatever we decide on)
     best_slice = get_best_slice(metadatum['data'])
     x[i] = best_slice 
