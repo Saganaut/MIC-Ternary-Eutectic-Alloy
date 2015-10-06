@@ -13,6 +13,7 @@ from pymks.tools import draw_correlations
 from pymks.tools import draw_microstructures
 from pymks import MKSHomogenizationModel
 from pymks.tools import draw_component_variance
+from pymks.tools import draw_components
 
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
@@ -74,9 +75,9 @@ if __name__ == '__main__':
   for metadatum in metadata:
     # Load data frames
     print "--->Loading: " + metadatum['filename']
-    metadatum['data'] = load_data('data/test/'+metadatum['filename'])
+    al_chunk = load_data('data/test/'+metadatum['filename'])
     # Get a representative slice from the block (or ave or whatever we decide on)
-    best_slice = get_best_slice(metadatum['data'])
+    best_slice = get_best_slice(al_chunk)
     x[i] = best_slice 
     y[i,0] = metadatum['ag']
     y[i,1] = metadatum['cu']
@@ -101,3 +102,7 @@ if __name__ == '__main__':
   model.fit(x_corr, y, periodic_axes=[0, 1]) 
   print model.reduced_fit_data
   draw_component_variance(model.dimension_reducer.explained_variance_ratio_)
+  draw_components([model.reduced_fit_data[0:3, :2], 
+                   model.reduced_fit_data[3:6, :2],
+                   model.reduced_fit_data[6:9, :2],
+                   model.reduced_fit_data[9:11, :2]], ['0.0525', '0.0593', '0.0773','0.0844']) 
