@@ -93,6 +93,11 @@ Steps with unanticipated challenges:
 
 
 
+{{ page.vertical }} 
+Cumulative Variance by PCA Component
+![tradeoff](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/decay.png)
+Encouraging singular-value fall-off characteristics
+
 {{ page.horizontal }}
 ##Linkage Overview
 Multivariate regression problem:
