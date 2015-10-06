@@ -22,7 +22,6 @@ vertical:		</section><section markdown="1">
 {% raw  %}{% endraw %} {{ page.horizontal }}
 <!-- Start Writing Below in Markdown -->
 
-
 ##Quick Recap
 
 * Directional Solidification of Al, Ag, Cu Eutectic Alloy
@@ -30,14 +29,15 @@ vertical:		</section><section markdown="1">
   * Multiple solidification velocities and volume-fractions
   * Plenty of data, plenty of challenges to overcome
 
-{{ page.vertical }}
 
+
+{{ page.vertical }}
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/directional-solid-3d.png)
 
-{{ page.horizontal }}
 
-##The Data
-We are using (currently 15) 800x800x300 simulations  
+
+{{ page.horizontal }}
+##Data: (12x) 800x800x300 
 
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/sim_params.png)
 
@@ -46,48 +46,66 @@ We can characterize these points using:
 * two volume fractions (the third is dependent) 
 * solidification velocity
 
-{{ page.horizontal }}
 
+
+{{ page.vertical }}
+##Curious Parameters 
+
+* We have more than 12 simulations at this resolution
+  * 2 have solidification velocities around 0.6
+  * all other experimental velocities are 0.09 or less
+  * Is this suspicious?   
+
+
+
+{{ page.horizontal }}
 ##Our Workflow
 
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/workflow/dataflow.png)
 
-{{ page.horizontal }}
 
+
+{{ page.vertical }}
+Steps with unanticipated challenges:
+![dataflow2](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/dataflow1.jpg)
+
+
+
+{{ page.horizontal }}
 ##2-Points Everywhere
 
 * we are using 2-pt stats, duh...
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/2pt-file-here.png)
 
-{{ page.horizontal }}
 
+
+{{ page.horizontal }}
 ##Steady-State Solidification
 * we must find the steady-state in 2pt stat space..
 
-{{ page.horizontal }}
 
+
+{{ page.horizontal }}
 ##PCA
 
 * Sample Result:
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/2pt-file-here.png)
 
-{{ page.horizontal }}
 
+
+{{ page.horizontal }}
 ##Linkage Overview
 Multivariate regression problem:
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/workflow/overview.png)
 
 
-{{ page.horizontal }}
 
+{{ page.horizontal }}
 ##Challenges
 
 
 
 {{ page.horizontal }}
-
-
-
 
 
 
