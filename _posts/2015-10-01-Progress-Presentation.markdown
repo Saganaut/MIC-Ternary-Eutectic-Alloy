@@ -80,11 +80,11 @@ Steps with unanticipated challenges:
 * Assume periodic microstructure (based on simulation)
 * Challenge in choosing a representative microstructure (RVE or average)
 
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/4_microstructures.png)
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/4_microstructures.png)
 
 {{ page.vertical }}
 Example two-point statistics (autocorrelation)
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/auto.png)
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/auto.png)
 
 
 
@@ -92,12 +92,12 @@ Example two-point statistics (autocorrelation)
 ##Steady-State Solidification
 
 Finding representative microstructure (preliminary method)
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/delta_method.png)
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/delta_method.png)
 * Compute the difference between spatial correlations to identify convergence/trends
 
 {{ page.vertical }}
 Comparing autocorrelation
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/compare.png)
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/compare.png)
 * High initial variation; steady in 
 * Full simulation result? 
 * Explore other methods (RVE, etc.)
