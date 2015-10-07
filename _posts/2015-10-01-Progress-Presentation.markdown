@@ -78,7 +78,7 @@ Steps with unanticipated challenges:
 
 * 3 phases (0 - Al, 1 - Ag-Al, 2 - Al-Cu)
 * Assume periodic microstructure (based on simulation)
-* Challenge in choosing a representative microstructure (RVE or average)
+* Finding a epresentative microstructure
 
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/4_microstructures.png)
 
@@ -93,11 +93,13 @@ Example two-point statistics (autocorrelation)
 
 Finding representative microstructure (preliminary method)
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/delta_method.png)
+
 * Compute the difference between spatial correlations to identify convergence/trends
 
 {{ page.vertical }}
 Comparing autocorrelation
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/compare.png)
+
 * High initial variation; steady in 
 * Full simulation result? 
 * Explore other methods (RVE, etc.)
