@@ -99,7 +99,7 @@ Finding representative microstructure (preliminary method)
 
 {{ page.vertical }}
 Comparing autocorrelation
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/compare1.png)
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/compare.png)
 
 * High initial variation; steady in full simulation result? 
 * Explore other methods (RVE, etc.)
