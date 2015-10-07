@@ -78,7 +78,7 @@ Steps with unanticipated challenges:
 
 * 3 phases (0 - Al, 1 - Ag-Al, 2 - Al-Cu)
 * Assume periodic microstructure (based on simulation)
-* Finding a epresentative microstructure
+* Finding a representative microstructure
 
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/4_microstructures.png)
 
@@ -100,8 +100,7 @@ Finding representative microstructure (preliminary method)
 Comparing autocorrelation
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/compare.png)
 
-* High initial variation; steady in 
-* Full simulation result? 
+* High initial variation; steady in full simulation result? 
 * Explore other methods (RVE, etc.)
 
 {{ page.horizontal }}
