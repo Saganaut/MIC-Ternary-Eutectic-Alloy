@@ -81,6 +81,7 @@ Steps with unanticipated challenges:
 * Finding a representative microstructure
 
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/4_microstructures.png)
+* Which microstructure is representative?
 
 {{ page.vertical }}
 Example two-point statistics (autocorrelation)
@@ -98,7 +99,7 @@ Finding representative microstructure (preliminary method)
 
 {{ page.vertical }}
 Comparing autocorrelation
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/compare.png)
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/compare1.png)
 
 * High initial variation; steady in full simulation result? 
 * Explore other methods (RVE, etc.)
