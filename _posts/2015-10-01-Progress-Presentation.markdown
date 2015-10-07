@@ -144,8 +144,10 @@ From a vol-fraction and solidification vel. to "a microstructure".
 
 {{ page.horizontal }}
 ##Challenges
-* Choosing an RVE
-* PCA inputs
+* Representing each volume with a microstructure
+  * Choosing an RVE
+  * Doing an expensive 3D 2-pt statistic
+* Choosing which correlations to use as PCA inputs
 * No control over simulation data
 
 
