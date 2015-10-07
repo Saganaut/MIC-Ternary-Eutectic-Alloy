@@ -1,7 +1,7 @@
 ---
 layout:     	slide
 title:     	Progress Report (Pres)	
-date:      	2015-10-01 
+date:      	2015-10-07 
 author:     	Almambet Iskakov, Robert Pienta
 
 theme:		solarized # default/beige/blood/moon/night/serif/simple/sky/solarized
@@ -43,8 +43,8 @@ vertical:		</section><section markdown="1">
 
 We can characterize these points using:
 
-* two volume fractions (the third is dependent) 
-* solidification velocity
+* Two volume fractions (the third is dependent) 
+* Solidification velocity
 
 
 
@@ -53,8 +53,10 @@ We can characterize these points using:
 
 * We have more than 12 simulations at this resolution
   * 2 have solidification velocities around 0.6
-  * all other experimental velocities are 0.09 or less
+  * All other experimental velocities are 0.09 or less
   * Is this suspicious?   
+  
+  * Possibly more data in future
 
 
 
@@ -74,16 +76,33 @@ Steps with unanticipated challenges:
 {{ page.horizontal }}
 ##2-Points Everywhere
 
-* we are using 2-pt stats, duh...
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone1_pres/2pt-file-here.png)
+* 3 phases (0 - Al, 1 - Ag-Al, 2 - Al-Cu)
+* Assume periodic microstructure (based on simulation)
+* Finding a epresentative microstructure
+
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/4_microstructures.png)
+
+{{ page.vertical }}
+Example two-point statistics (autocorrelation)
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/auto.png)
 
 
 
 {{ page.horizontal }}
 ##Steady-State Solidification
-* we must find the steady-state in 2pt stat space..
 
+Finding representative microstructure (preliminary method)
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/delta_method.png)
 
+* Compute the difference between spatial correlations to identify convergence/trends
+
+{{ page.vertical }}
+Comparing autocorrelation
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/compare.png)
+
+* High initial variation; steady in 
+* Full simulation result? 
+* Explore other methods (RVE, etc.)
 
 {{ page.horizontal }}
 ##PCA
@@ -125,7 +144,9 @@ From a vol-fraction and solidification vel. to "a microstructure".
 
 {{ page.horizontal }}
 ##Challenges
-
+* Choosing an RVE
+* PCA inputs
+* No control over simulation data
 
 
 {{ page.horizontal }}
