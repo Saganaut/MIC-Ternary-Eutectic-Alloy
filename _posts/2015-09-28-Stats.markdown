@@ -6,9 +6,28 @@ author:     Almambet Iskakov
 ---
 <!-- Start Writing Below in Markdown -->
 
-#Headers:
+#2-Point Statistics Workflow:
 
-##2-Pt Statistics 
+Two-point statistics are going to be computed using the PyMKS framework developed in Python by the MINED group. The advantage of using this PyMKS code is its convenience in implementation and good support from the developer(s) of the code, David Brough, and others in the MINED group. Initial computations were done in Matlab framework, also developed by MINED. We have a **three-phase structure**, and essentially we have 0, 1, and 2 assigned to each phase. We assume a **periodic structure**, which is based on the boundary conditions of the simulation. 
+
+After computing the spatial statistics for one dataset, the next big challenge is determining a representative structure within the dataset. A representative structure is needed in order to simplify the data analysis further down the pipeline.  For each dataset we expect to extract one set of spatial statistics. Since we have a three-phase structure, we have 6 spatial correlations total, 3 auto-correlations and 3 cross-correlations.
+
+![4microstructures](/MIC-Ternary-Eutectic-Alloy/milestone2_pres/workflow/4_microstructures.png)
+Which microstructure can be chosen to represent all 4?
+
+##Number of computations
+To obtain full spatial correlation for a three-phase material, we need to compute correlations on two statistics as shown below. There are 9 statistics total, of which three are redundant, for example statistics for indices ij and ji are the same.
+
+![4microstructures](/MIC-Ternary-Eutectic-Alloy/milestone2_pres/workflow/two_comps.png)
+
+In most of our datasets, there are about 300 structures. Initially, we compute the statistics for all structures within one dataset. Then, it's possible to see trends and in the statistics to figure out the required frequency of computations.
+
+Example of auto-correlation is shown below:
+![4microstructures](/MIC-Ternary-Eutectic-Alloy/milestone2_pres/workflow/auto.png)
+
+##Difference between statistics within dataset
+As the structure evolves with distance, we observe changes in the statistics at each structure. 
+
 ~WORK IN PROGRESS~
 * cover 2-pt stats for our data
   * Periodic etc...
