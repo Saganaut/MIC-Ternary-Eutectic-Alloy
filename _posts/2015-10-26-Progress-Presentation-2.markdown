@@ -64,7 +64,7 @@ vertical:		</section><section markdown="1">
 
 
 ##General Performance
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/workflow/dataflow.png)
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone3_pres/mse.png)
 
 
 {{ page.horizontal }}
