@@ -38,12 +38,11 @@ vertical:		</section><section markdown="1">
   * Mean Squared Error (MSE)
 
 
-
-
 {{ page.horizontal }}
 ##Parameter Optimization 
-* k-dimensional grid estimation using CV
-*
+* k-dimensional-grid parameter estimation using CV
+  * requires training each model hundreds of times
+  * finds approximately optimized parameters per model
 
 
 {{ page.horizontal }}
@@ -62,24 +61,15 @@ vertical:		</section><section markdown="1">
 * Random Forest
 
 {{ page.horizontal }}
+
+
+##General Performance
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/workflow/dataflow.png)
+
+
+{{ page.horizontal }}
 ##Ongoing Work
-* We are currently working on cross-validation for our pipeline.
-  * Originally wanted k-fold cross validation, but...
-
-  * That's leave-one-out for ~10 data points.
-
-* We have not completed the reconstruction code, but can produce everything up to it.
-
-{{ page.horizontal }}
-##Challenges
-* Representing each volume with a microstructure
-  * Choosing an RVE
-  * Doing an expensive 3D 2-pt statistic
-* Choosing which correlations to use as PCA inputs
-* No control over simulation data
-
-
-{{ page.horizontal }}
+* Making "dependent" samples from a single simulation
 
 
 
