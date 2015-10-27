@@ -25,6 +25,8 @@ from sklearn import linear_model
 from sklearn.cross_validation import LeaveOneOut
 from sklearn.grid_search import GridSearchCV
 from sklearn import svm, tree
+from sklearn.preprocessing import StandardScaler
+
 
 # Just loads the data from the .mat file in dropbox
 def load_data(filename):    
@@ -50,6 +52,7 @@ def load_metadata(filename):
     metareader = csv.reader(csvfile, delimiter='\t', quotechar='|')
     next(metareader, None)
     for row in metareader:
+      if float(row[2]) > .2: continue
       metadata.append({'ag':float(row[0]),
                        'cu':float(row[1]),
                        'sv':float(row[2]), 
@@ -96,7 +99,7 @@ def run_gridcv_homogenization(x, y):
   flat_shape = (x.shape[0],) + (np.prod(x.shape[1:]),)
 
   X_train, X_test, y_train, y_test = train_test_split(x.reshape(flat_shape), y,
-                                                    test_size=0.1, random_state=3)
+                                                    test_size=0.1, random_state=0)
   print 'Training set size: ', (X_train.shape)
   print 'Testing set size: ', (X_test.shape)
 
