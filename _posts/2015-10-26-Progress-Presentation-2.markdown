@@ -34,7 +34,7 @@ vertical:		</section><section markdown="1">
 ##Cross-Validation (CV)
 * To avoid overfitting we use leave-one-out CV 
 * For each Leave-One-Out test, we measure
-  * $$\r^2$$
+  * $$r^2$$
   * Mean Squared Error (MSE)
 
 
