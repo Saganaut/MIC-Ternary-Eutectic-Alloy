@@ -29,7 +29,7 @@ vertical:		</section><section markdown="1">
   * We have created a series of optimization and cross-validation (CV)
 
 {{ page.horizontal }}
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone3_pres/mse.png)
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone3_pres/pca_12.png)
 * Previously we had 12 datasets
 
 {{ page.vertical }}
