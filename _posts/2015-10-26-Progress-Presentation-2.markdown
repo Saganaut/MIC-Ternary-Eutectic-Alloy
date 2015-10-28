@@ -28,6 +28,13 @@ vertical:		</section><section markdown="1">
   * We are now working on the final linking (steady state microstructures)
   * We have created a series of optimization and cross-validation (CV)
 
+{{ page.horizontal }}
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone3_pres/mse.png)
+* Previously we had 12 datasets
+
+{{ page.vertical }}
+* Now we have 20 datasets
+* Number of PCs increased to 5
 
 
 {{ page.horizontal }}
