@@ -74,13 +74,7 @@ For the solidication velocity case:
 $$ y_v = -6.1112E-04x_1+  -6.4253E-04x_2  -3.4660E-06x_3  $$
 $$ -2.4926E-04x_4  -2.0120E-04x_5 + 8.51442E-06 $$ 
 
-{{ page.horizontal }}
-##Non-Linear P-S Linkage 
-* Our nonlinear modeling will be covered in subsequent blog posts
-  * Linear SVR
-  * $$\nu$$-SVR
-  * Forest
-  * Random Forest
+
 
 {{ page.horizontal }}
 
@@ -97,9 +91,18 @@ $$ -2.4926E-04x_4  -2.0120E-04x_5 + 8.51442E-06 $$
 * Explore transient datasets and create a time series model
   * Increasing the number of samples from a single simulation
 * Running an optimized version of each linkage model
+* Nonlinear models 
 
 <!-- End Here -->
 {{ page.horizontal }}
+
+{{ page.horizontal }}
+##Non-Linear P-S Linkage 
+* Our nonlinear modeling will be covered in subsequent blog posts
+  * Linear SVR
+  * $$\nu$$-SVR
+  * Forest
+  * Random Forest
 
 ## Questions & Comments
 
