@@ -25,24 +25,24 @@ vertical:		</section><section markdown="1">
 ##Quick Recap
 
 * Our pipeline is almost complete
-  * we are now working on the final linking 
-  * we have created a series of optimization and cross-validation (CV)
+  * We are now working on the final linking (steady state microstructures)
+  * We have created a series of optimization and cross-validation (CV)
 
 
 
 {{ page.horizontal }}
 ##Cross-Validation (CV)
 * To avoid overfitting we use leave-one-out CV 
-* For each Leave-One-Out test
-  * $$r^2$$
+* For each Leave-One-Out test, we measure
+  * $$\r^2$$
   * Mean Squared Error (MSE)
 
 
 {{ page.horizontal }}
 ##Parameter Optimization 
 * k-dimensional-grid parameter estimation using CV
-  * requires training each model hundreds of times
-  * finds approximately optimized parameters per model
+  * Requires training each model hundreds of times
+  * Finds approximately optimized parameters per model
 
 
 {{ page.horizontal }}
@@ -70,6 +70,7 @@ vertical:		</section><section markdown="1">
 {{ page.horizontal }}
 ##Ongoing Work
 * Making "dependent" samples from a single simulation
+* Explore transient datasets and create a time series model
 
 
 
