@@ -75,11 +75,12 @@ $$ y_v = -6.1112E-04x_1+  -6.4253E-04x_2  -3.4660E-06x_3  $$
 $$ -2.4926E-04x_4  -2.0120E-04x_5 + 8.51442E-06 $$ 
 
 {{ page.horizontal }}
-##Non-Linear P-S Linkage
-* Linear SVR
-* $$\nu$$-SVR
-* Forest
-* Random Forest
+##Non-Linear P-S Linkage 
+* Our nonlinear modeling will be covered in subsequent blog posts
+  * Linear SVR
+  * $$\nu$$-SVR
+  * Forest
+  * Random Forest
 
 {{ page.horizontal }}
 
