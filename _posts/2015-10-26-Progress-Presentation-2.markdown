@@ -30,6 +30,7 @@ vertical:		</section><section markdown="1">
 
 {{ page.horizontal }}
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/pca.png)
+
 * Previously we had 12 datasets
 
 {{ page.vertical }}
