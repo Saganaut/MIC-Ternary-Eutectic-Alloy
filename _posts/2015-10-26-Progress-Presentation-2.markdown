@@ -34,9 +34,16 @@ vertical:		</section><section markdown="1">
 * Previously we had 11 datasets
 
 {{ page.vertical }}
+
 * Now we have 18 datasets
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone3_pres/new_pca_space.png)
+
+{{ page.vertical }}
+
+* Number of PCs (for 90% variance) increased to 5
+
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone3_pres/pca.png)
-* Number of PCs increased to 5
+
 
 
 {{ page.horizontal }}
