@@ -31,10 +31,11 @@ vertical:		</section><section markdown="1">
 {{ page.horizontal }}
 ![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/pca.png)
 
-* Previously we had 12 datasets
+* Previously we had 11 datasets
 
 {{ page.vertical }}
-* Now we have 20 datasets
+* Now we have 18 datasets
+![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone3_pres/pca.png)
 * Number of PCs increased to 5
 
 
@@ -72,15 +73,17 @@ vertical:		</section><section markdown="1">
 
 
 ##General Performance
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone3_pres/mse.png)
+![MSE](/MIC-Ternary-Eutectic-Alloy/img/milestone3_pres/mse.png)
 
+{{ page.vertical }}
+
+![r2](/MIC-Ternary-Eutectic-Alloy/img/milestone3_pres/r2.png)
 
 {{ page.horizontal }}
 ##Ongoing Work
-* Making "dependent" samples from a single simulation
 * Explore transient datasets and create a time series model
-
-
+  * Increasing the number of samples from a single simulation
+* Running an optimized version of each linkage model
 
 <!-- End Here -->
 {{ page.horizontal }}
