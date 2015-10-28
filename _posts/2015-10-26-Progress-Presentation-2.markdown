@@ -92,6 +92,7 @@ $$ -2.4926E-04x_4  -2.0120E-04x_5 + 8.51442E-06 $$
   * Increasing the number of samples from a single simulation
 * Running an optimized version of each linkage model
 * Nonlinear models 
+* 2 Suspicious datasets
 
 <!-- End Here -->
 {{ page.horizontal }}
