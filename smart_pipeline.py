@@ -91,6 +91,32 @@ def run_conventional_homogenization(x, y, n_comps, linker_model, verbose=2):
   return np.mean(cvs), np.std(cvs), np.mean(mse), np.std(mse)
   #print('R-squared Value'), (model.score(X_test, y_test, scoring = 'r2'))
 
+def plot_components(x, y, n_comps, linker_model, verbose=2):
+  prim_basis = PrimitiveBasis(n_states=3, domain=[0, 2])
+  model = MKSHomogenizationModel(basis=prim_basis,
+                                 property_linker=linker_model)
+  model.n_components = 5
+  model.fit(x,y,periodic_axes=[0,1])
+
+  print model.property_linker.coef_
+  draw_components([model.reduced_fit_data[0:3, :2], 
+                   model.reduced_fit_data[3:6, :2],
+                   model.reduced_fit_data[6:9, :2],
+                   model.reduced_fit_data[9:11, :2], 
+                   model.reduced_fit_data[11:14, :2],
+                   model.reduced_fit_data[14:16, :2],
+                   model.reduced_fit_data[16:17, :2],
+                   model.reduced_fit_data[17:18, :2]],
+                   ['Ag:0.237	Cu:0.141	v:0.0525', 
+                    'Ag:0.237	Cu:0.141	v:0.0593', 
+                    'Ag:0.237	Cu:0.141	v:0.0773',
+                    'Ag:0.237	Cu:0.141	v:0.0844', 
+                    'Ag:0.239	Cu:0.138	v:0.0791', 
+                    'Ag:0.239	Cu:0.138	v:0.0525', 
+                    'Ag:0.237	Cu:0.141	v:0.0914', 
+                    'Ag:0.237	Cu:0.141	v:0.0512']) 
+
+
 def run_gridcv_homogenization(x, y):
   prim_basis = PrimitiveBasis(n_states=3, domain=[0, 2])
   model = MKSHomogenizationModel(basis=prim_basis)
@@ -155,8 +181,12 @@ if __name__ == '__main__':
       pickle.dump((x,y), f)
 
   # PCA component variance plot
-#  plot_component_variance(x, y[:,2])
+  #plot_component_variance(x, y[:,2])
   
+  # Plot components in pca space
+  plot_components(x,y, 5, linear_model.LinearRegression())
+
+
   # LINEAR 
   print "-->Homogenizing"
   with open('data/linker_results_r2_data.csv', 'w') as csv_file:
@@ -166,7 +196,7 @@ if __name__ == '__main__':
       csv_writer_mse = csv.writer(csv_file_mse, delimiter=',')
       print "--->LinearRegression"
       linker = linear_model.LinearRegression() 
-      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(y,x,5,linker)
       csv_writer.writerow(['LinearRegression', r2_mean, r2_std])
       csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
      
@@ -175,38 +205,38 @@ if __name__ == '__main__':
       linker = linear_model.Lasso() 
       r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
       csv_writer.writerow(['Lasso', r2_mean, r2_std])
-      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+      csv_writer_mse.writerow(['Lasso', mse_mean, mse_std])
       
       print "--->Ridge"
       linker = linear_model.Ridge() 
       r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
       csv_writer.writerow(['Ridge', r2_mean, r2_std])
-      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+      csv_writer_mse.writerow(['Ridge', mse_mean, mse_std])
 
       # NON linear
       print "--->LinearSVR"
       linker = svm.LinearSVR()
       r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y[:,2],5,linker)
       csv_writer.writerow(['LinearSVR', r2_mean, r2_std])
-      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+      csv_writer_mse.writerow(['LinearSVR', mse_mean, mse_std])
       
       print "--->nuSVR"
       linker = svm.NuSVR() 
       r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y[:,2],5,linker)
       csv_writer.writerow(['nuSVR', r2_mean, r2_std])
-      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+      csv_writer_mse.writerow(['nuSVR', mse_mean, mse_std])
       
       print "--->TreeRegressor"
       linker = tree.DecisionTreeRegressor() 
       r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
       csv_writer.writerow(['TreeRegressor', r2_mean, r2_std])
-      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+      csv_writer_mse.writerow(['TreeRegressor', mse_mean, mse_std])
       
       print "--->RandomTreeRegressor"
       linker = tree.ExtraTreeRegressor() 
       r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
       csv_writer.writerow(['RandomForest', r2_mean, r2_std])
-      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+      csv_writer_mse.writerow(['RandomForest', mse_mean, mse_std])
 
   quit()
 
@@ -251,6 +281,7 @@ if __name__ == '__main__':
 
   # Draw the plot containing the PCA variance accumulation
   #draw_component_variance(model.dimension_reducer.explained_variance_ratio_)
+
   draw_components([model.reduced_fit_data[0:3, :2], 
                    model.reduced_fit_data[3:6, :2],
                    model.reduced_fit_data[6:9, :2],
