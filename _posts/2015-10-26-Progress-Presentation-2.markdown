@@ -68,6 +68,11 @@ vertical:		</section><section markdown="1">
 * Ridge (L2 Regression)
 * Lasso (L1 Regression)
 
+{{ page.vertical }}
+## Example Linear Model Coeffs
+For the solidication velocity case:
+$$ y_v = -6.1112E-04x_1+  -6.4253E-04x_2  -3.4660E-06x_3  $$
+$$ -2.4926E-04x_4  -2.0120E-04x_5 + 8.51442E-06 $$ 
 
 {{ page.horizontal }}
 ##Non-Linear P-S Linkage
