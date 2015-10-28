@@ -86,9 +86,9 @@ def run_conventional_homogenization(x, y, n_comps, linker_model, verbose=2):
   print "--->Cross validating"
   cvs = cross_val_score(model, x, y, cv=5, scoring='r2', verbose=verbose)  
   #model.fit(x,y, periodic_axes=[0, 1]) 
-  print cvs
-  print np.mean(cvs)
-  return np.mean(cvs), np.std(cvs)
+  mse = cross_val_score(model, x, y, cv=5, scoring='mean_squared_error', verbose=verbose)  
+  print np.mean(cvs), np.mean(mse)
+  return np.mean(cvs), np.std(cvs), np.mean(mse), np.std(mse)
   #print('R-squared Value'), (model.score(X_test, y_test, scoring = 'r2'))
 
 def run_gridcv_homogenization(x, y):
@@ -159,49 +159,55 @@ if __name__ == '__main__':
   
   # LINEAR 
   print "-->Homogenizing"
-  with open('data/linker_results.csv', 'w') as csv_file:
+  with open('data/linker_results_r2_data.csv', 'w') as csv_file:
     csv_writer = csv.writer(csv_file, delimiter=',')
 
-    print "--->LinearRegression"
-    linker = linear_model.LinearRegression() 
-    r2_mean, r2_std = run_conventional_homogenization(x,y,5,linker)
-    csv_writer.writerow(['LinearRegression', r2_mean, r2_std])
-    
-    print "--->Lasso"
-    linker = linear_model.Lasso() 
-    r2_mean, r2_std = run_conventional_homogenization(x,y,5,linker)
-    csv_writer.writerow(['Lasso', r2_mean, r2_std])
-    
-    print "--->Ridge"
-    linker = linear_model.Ridge() 
-    r2_mean, r2_std = run_conventional_homogenization(x,y,5,linker)
-    csv_writer.writerow(['Ridge', r2_mean, r2_std])
+    with open('data/linker_results_mse_data.csv', 'w') as csv_file_mse:
+      csv_writer_mse = csv.writer(csv_file_mse, delimiter=',')
+      print "--->LinearRegression"
+      linker = linear_model.LinearRegression() 
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
+      csv_writer.writerow(['LinearRegression', r2_mean, r2_std])
+      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+     
 
-    # NON linear
-    print "--->LinearSVR"
-    linker = svm.LinearSVR()
-    r2_mean, r2_std = run_conventional_homogenization(x,y[:,2],5,linker)
-    csv_writer.writerow(['LinearSVR', r2_mean, r2_std])
-    
-    print "--->nuSVR"
-    linker = svm.NuSVR() 
-    r2_mean, r2_std = run_conventional_homogenization(x,y[:,2],5,linker)
-    csv_writer.writerow(['nuSVR', r2_mean, r2_std])
-    
-    print "--->TreeRegressor"
-    linker = tree.DecisionTreeRegressor() 
-    r2_mean, r2_std = run_conventional_homogenization(x,y,5,linker)
-    csv_writer.writerow(['TreeRegressor', r2_mean, r2_std])
-    
-    print "--->RandomTreeRegressor"
-    linker = tree.ExtraTreeRegressor() 
-    r2_mean, r2_std = run_conventional_homogenization(x,y,5,linker)
-    csv_writer.writerow(['RandomForest', r2_mean, r2_std])
+      print "--->Lasso"
+      linker = linear_model.Lasso() 
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
+      csv_writer.writerow(['Lasso', r2_mean, r2_std])
+      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+      
+      print "--->Ridge"
+      linker = linear_model.Ridge() 
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
+      csv_writer.writerow(['Ridge', r2_mean, r2_std])
+      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
 
+      # NON linear
+      print "--->LinearSVR"
+      linker = svm.LinearSVR()
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y[:,2],5,linker)
+      csv_writer.writerow(['LinearSVR', r2_mean, r2_std])
+      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+      
+      print "--->nuSVR"
+      linker = svm.NuSVR() 
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y[:,2],5,linker)
+      csv_writer.writerow(['nuSVR', r2_mean, r2_std])
+      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+      
+      print "--->TreeRegressor"
+      linker = tree.DecisionTreeRegressor() 
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
+      csv_writer.writerow(['TreeRegressor', r2_mean, r2_std])
+      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
+      
+      print "--->RandomTreeRegressor"
+      linker = tree.ExtraTreeRegressor() 
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
+      csv_writer.writerow(['RandomForest', r2_mean, r2_std])
+      csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
 
-
-
- 
   quit()
 
 
