@@ -77,19 +77,13 @@ def plot_component_variance(x, y):
   # Draw the plot containing the PCA variance accumulation
   draw_component_variance(model.dimension_reducer.explained_variance_ratio_)
 
-def run_conventional_homogenization(x, y, n_comps, linker_model, verbose=2):
-  prim_basis = PrimitiveBasis(n_states=3, domain=[0, 2])
-  model = MKSHomogenizationModel(basis=prim_basis,
-                                 property_linker=linker_model)
-  model.n_components = 5
+def run_conventional_linkage(x, y, n_comps, linker_model, verbose=2):
   loo_cv = LeaveOneOut(x.shape[0])
   print "--->Cross validating"
-  cvs = cross_val_score(model, x, y, cv=5, scoring='r2', verbose=verbose)  
-  #model.fit(x,y, periodic_axes=[0, 1]) 
-  mse = cross_val_score(model, x, y, cv=5, scoring='mean_squared_error', verbose=verbose)  
+  cvs = cross_val_score(linker_model, x, y, cv=5, scoring='r2', verbose=verbose)  
+  mse = cross_val_score(linker_model, x, y, cv=5, scoring='mean_squared_error', verbose=verbose)  
   print np.mean(cvs), np.mean(mse)
   return np.mean(cvs), np.std(cvs), np.mean(mse), np.std(mse)
-  #print('R-squared Value'), (model.score(X_test, y_test, scoring = 'r2'))
 
 def plot_components(x, y, n_comps, linker_model, verbose=2):
   prim_basis = PrimitiveBasis(n_states=3, domain=[0, 2])
@@ -117,12 +111,8 @@ def plot_components(x, y, n_comps, linker_model, verbose=2):
                     'Ag:0.237	Cu:0.141	v:0.0512']) 
 
 
-def run_gridcv_homogenization(x, y):
-  prim_basis = PrimitiveBasis(n_states=3, domain=[0, 2])
-  model = MKSHomogenizationModel(basis=prim_basis)
-                               #correlations=[(0, 0), (1, 1), (0, 1)])
+def run_gridcv_linkage(x, y):
 
-  flat_shape = (x.shape[0],) + (np.prod(x.shape[1:]),)
 
   X_train, X_test, y_train, y_test = train_test_split(x.reshape(flat_shape), y,
                                                     test_size=0.1, random_state=0)
@@ -141,16 +131,33 @@ def run_gridcv_homogenization(x, y):
   #draw_gridscores_matrix(gs, ['n_components', 'degree'], score_label='R-Squared',
   #                     param_labels=['Number of Components', 'Order of Polynomial'])
 
-  
-  
+def compute_correlations(x):
+  print "-->Constructing Correlations"
+  prim_basis = PrimitiveBasis(n_states=3, domain=[0,2])
+  x_ = prim_basis.discretize(x)
+  x_corr = correlate(x_, periodic_axes=[0, 1])
+  x_corr_flat = np.ndarray(shape=(x.shape[0],  x_corr.shape[1]*x_corr.shape[2]*x_corr.shape[3]))
+  row_ctr = 0
+  for row in x_corr:
+    x_corr_flat[row_ctr] = row.flatten()
+    row_ctr += 1
+  return x_corr, x_corr_flat
+
+def compute_pca_scores(x_flat):
+  pca = PCA(n_components=5)
+  x_pca = pca.fit(x_flat).transform(x_flat)
+  return x_pca
+
+
   #~~~~~~~MAIN~~~~~~~
 if __name__ == '__main__':
   
-  if os.path.isfile('data/x_y_data.pgz'):
+  if os.path.isfile('cache/x_y_data.pgz'):
     print "-->Pickle found, loading x and y directly"
-    with gzip.GzipFile('data/x_y_data.pgz', 'r') as f:
+    with gzip.GzipFile('cache/x_y_data.pgz', 'r') as f:
       x, y = pickle.load(f)
   else:
+    os.mkdir('cache')
     # Load the metadata
     print "-->Loading Metadata"
     metadata = load_metadata('data/metadata_all.tsv')
@@ -177,17 +184,28 @@ if __name__ == '__main__':
       solid_vel[i] = metadatum['sv']
       i += 1
     print "-->Pickling x and y"
-    with gzip.GzipFile('data/x_y_data.pgz', 'w') as f:
+    with gzip.GzipFile('cache/x_y_data.pgz', 'w') as f:
       pickle.dump((x,y), f)
 
   # PCA component variance plot
   #plot_component_variance(x, y[:,2])
   
   # Plot components in pca space
-  plot_components(x,y, 5, linear_model.LinearRegression())
+#  plot_components(x,y, 5, linear_model.LinearRegression())
 
-
-  # LINEAR 
+  if os.path.isfile('cache/x_corr.pgz'):
+    with gzip.GzipFile('cache/x_corr.pgz', 'r') as f:
+      print '-->Correlations found unpickling'
+      x_corr, x_corr_flat = pickle.load(f)
+  else:
+    # Get correlations
+    x_corr, x_corr_flat = compute_correlations(x)
+    with gzip.GzipFile('cache/x_corr.pgz', 'w') as f:
+      pickle.dump((x_corr, x_corr_flat), f)
+  
+  # Use PCA on flattened correlations
+  x_pca = compute_pca_scores(x_corr_flat)
+# LINEAR 
   print "-->Homogenizing"
   with open('data/linker_results_r2_data.csv', 'w') as csv_file:
     csv_writer = csv.writer(csv_file, delimiter=',')
@@ -196,45 +214,44 @@ if __name__ == '__main__':
       csv_writer_mse = csv.writer(csv_file_mse, delimiter=',')
       print "--->LinearRegression"
       linker = linear_model.LinearRegression() 
-      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(y,x,5,linker)
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,linker)
       csv_writer.writerow(['LinearRegression', r2_mean, r2_std])
       csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
      
-
       print "--->Lasso"
       linker = linear_model.Lasso() 
-      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,linker)
       csv_writer.writerow(['Lasso', r2_mean, r2_std])
       csv_writer_mse.writerow(['Lasso', mse_mean, mse_std])
       
       print "--->Ridge"
       linker = linear_model.Ridge() 
-      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,linker)
       csv_writer.writerow(['Ridge', r2_mean, r2_std])
       csv_writer_mse.writerow(['Ridge', mse_mean, mse_std])
 
       # NON linear
-      print "--->LinearSVR"
-      linker = svm.LinearSVR()
-      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y[:,2],5,linker)
-      csv_writer.writerow(['LinearSVR', r2_mean, r2_std])
-      csv_writer_mse.writerow(['LinearSVR', mse_mean, mse_std])
+#      print "--->LinearSVR"
+#      linker = svm.LinearSVR()
+#      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,linker)
+#      csv_writer.writerow(['LinearSVR', r2_mean, r2_std])
+#      csv_writer_mse.writerow(['LinearSVR', mse_mean, mse_std])
       
-      print "--->nuSVR"
-      linker = svm.NuSVR() 
-      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y[:,2],5,linker)
-      csv_writer.writerow(['nuSVR', r2_mean, r2_std])
-      csv_writer_mse.writerow(['nuSVR', mse_mean, mse_std])
+#      print "--->nuSVR"
+#      linker = svm.NuSVR() 
+#      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,linker)
+#      csv_writer.writerow(['nuSVR', r2_mean, r2_std])
+#      csv_writer_mse.writerow(['nuSVR', mse_mean, mse_std])
       
       print "--->TreeRegressor"
       linker = tree.DecisionTreeRegressor() 
-      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,linker)
       csv_writer.writerow(['TreeRegressor', r2_mean, r2_std])
       csv_writer_mse.writerow(['TreeRegressor', mse_mean, mse_std])
       
       print "--->RandomTreeRegressor"
       linker = tree.ExtraTreeRegressor() 
-      r2_mean, r2_std, mse_mean, mse_std = run_conventional_homogenization(x,y,5,linker)
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,linker)
       csv_writer.writerow(['RandomForest', r2_mean, r2_std])
       csv_writer_mse.writerow(['RandomForest', mse_mean, mse_std])
 
@@ -242,7 +259,6 @@ if __name__ == '__main__':
 
 
 
-  #oldy coldy
   print "-->Constructing Correlations"
   prim_basis = PrimitiveBasis(n_states=3, domain=[0,2])
   x_ = prim_basis.discretize(x)
