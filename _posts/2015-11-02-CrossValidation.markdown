@@ -28,13 +28,13 @@ See work by Hastie et al. for further details.
 
 
 ## Scikit-Learn makes CV Easy
-```python
+{% highlight python %}
  	from sklearn import cross_validation
 	kfold = cross_validation.KFold(4, n_folds=2)
 	cv_scores = cross_validation.cross_val_score(model, X, y, cv=kfold, n_jobs=1)
 	#cv - the cross validation model you want to use
 	#n_jobs - the number of processes to run in parallel (if model training is expensive)
-```
+{% endhighlight %}
 
 # Parameter Optimization
 Many models have parameters, which dictate how the model performs during runtime.
