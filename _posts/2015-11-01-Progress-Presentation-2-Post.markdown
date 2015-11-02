@@ -3,7 +3,7 @@ layout:     post
 title:      Second Progress Report Presentation
 date:       2015-11-01 12:00:00
 author:     Materials Innovation
-tags: 		result
+tags: 		
 ---
 <!-- Start Writing Below in Markdown -->
 
