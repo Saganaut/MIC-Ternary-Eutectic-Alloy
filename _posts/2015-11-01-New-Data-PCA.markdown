@@ -3,7 +3,7 @@ layout:     post
 title:      Additional Data
 date:       2015-11-01 12:00:00
 author:     Almambet Iskakov
-tags: 		result
+tags: 		
 ---
 <!-- Start Writing Below in Markdown -->
 
