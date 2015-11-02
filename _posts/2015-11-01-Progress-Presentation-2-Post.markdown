@@ -2,7 +2,7 @@
 layout:     post
 title:      Second Progress Report Presentation
 date:       2015-11-01 12:00:00
-author:     Materials Innovation
+author:     Almambet Iskakov, Robert Pienta
 tags: 		
 ---
 <!-- Start Writing Below in Markdown -->
