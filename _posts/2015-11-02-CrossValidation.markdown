@@ -48,8 +48,13 @@ We have implemented a pipeline that performs both CV and model parameter optimiz
 We can explore the space of possible parameters by performing cross validation on each combination.
 Using the polynomial interpolation example above, consider the possible parameterizations:
 ![gridcv](/MIC-Ternary-Eutectic-Alloy/img/cv_post/GridCV.png)
-Each leaf of this tree requires an entire $$k$$-fold or LOO CV run.
+Each leaf of this tree requires an entire $$K$$-fold or LOO CV run.
+
+If you are using pyMKS to perform homogenization then you can actually use grid optimization on more than just the estimator parameters.
+You can use it on the whole homogenization pipeline (i.e. number of pca components, which correlations, etc.)!
 
 References
+
 $$^1$$ Trevor Hastie, Robert Tibshirani, and Jerome Friedman. Springer Series in Statistics Springer New York Inc., New York, NY, USA, (2001)
+
 $$^2$$ Leo Breiman and Philip Spector. Submodel Selection and Evaluation in Regression. International Statistical Review / Revue Internationale de Statistique, Vol. 60, No. 3. (Dec., 1992), pp. 291-319.
