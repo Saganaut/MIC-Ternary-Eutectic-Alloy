@@ -15,24 +15,36 @@ We received new data from Yuksel, our project mentor. To remind, our data comes 
 ### Initial data
 Initially, we had 14 datasets of data, each containing 800x800x301 microstructures (first microstructure is a random Voronoi structure). We performed our analysis on the first dataset as outlined by the pipline. Our PCA results looked very good, with 2 PC components capturing about 93% of variance in our data. Note that we didn't use two suspect datasets in which the solidification velocity parameter is an order of magniture higher than the rest of the data. 
 
+![pca](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/pca.png) 
+
+<!--$$#$$ | *wt% Ag* | *wt% Cu* | *Solid. v*
+|---------|:----------|:----------:|---------:|
+1  |0.237|  0.141  |0.0525|
+2  | 0.237 | 0.141 | 0.0.0525
+3  | 0.237 | 0.141 | 0.0.0525
+4  | 0.237 | 0.141 | 0.05934375
+5  | 0.237 |0.141 | 0.05934375
+6  | 0.237 | 0.141 | 0.05934375
+7  | 0.237 | 0.141 | 0.077367
+8  | 0.237 | 0.141 | 0.077367
+9  | 0.237 | 0.141 | 0.077367
+10 | 0.237 | 0.141 | 0.0844
+11 | 0.237 | 0.141 | 0.0844
+12 | 0.237 | 0.141 | 0.0844
+-->
+
 ### New data
 As mentioned before, new data consists of evolving microstructure images with attached process parameters to them: solidification velocity and wt% of Al, Ag, and Cu.
 
-# | *wt% Ag* | *wt%Cu | *Solid. v*
-|---------|:----------|:----------:|
-is   |Left|  Center  |
-a    | cut | it 
-column  | short | B
-
-$$#$$ | *wt% Ag* | *wt% Cu* | *Solid. v*
-|---------|:----------|:----------:|---------:|
-1  |0.237|  0.141  |0.09143|
-2  | 0.237 | 0.141 | 0.051285
-3  | 0.2391 | 0.1389 | 0.0525
-4  | 0.2433 | 0.1347 | 0.0525
-5  | 0.2391 |0.1389 | 0.079125
-6  | 0.2433 | 0.1347 | 0.079125
-7  | 0.2391 | 0.1389 | 0.079125
+$$#$$      | *wt% Ag* | *wt% Cu* | *Solid. v*
+|----------|:---------|:--------:|---------:|
+1          |0.237     |  0.141   |0.09143|
+2          | 0.237    | 0.141    | 0.051285
+3          | 0.2391   | 0.1389   | 0.0525
+4          | 0.2433   | 0.1347   | 0.0525
+5          | 0.2391   |0.1389    | 0.079125
+6          | 0.2433   | 0.1347   | 0.079125
+7          | 0.2391   | 0.1389   | 0.079125
 
 ### Header 3
 
