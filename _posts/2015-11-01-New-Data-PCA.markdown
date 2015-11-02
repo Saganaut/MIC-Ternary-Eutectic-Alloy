@@ -17,7 +17,7 @@ Initially, we had 14 datasets of data, each containing 800x800x301 microstructur
 
 ![pca](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/pca.png) 
 
-<!--$$#$$ | *wt% Ag* | *wt% Cu* | *Solid. v*
+<!--$$# $$| *wt% Ag* | *wt% Cu* | *Solid. v*
 |---------|:----------|:----------:|---------:|
 1  |0.237|  0.141  |0.0525|
 2  | 0.237 | 0.141 | 0.0.0525
@@ -36,10 +36,10 @@ Initially, we had 14 datasets of data, each containing 800x800x301 microstructur
 ### New data
 As mentioned before, new data consists of evolving microstructure images with attached process parameters to them: solidification velocity and wt% of Al, Ag, and Cu.
 
-$$ # $$    | *wt% Ag* | *wt% Cu* | *Solid. v*
-|----------|:---------|:--------:|---------:|
-1          |0.237     |  0.141   |0.09143|
-2          | 0.237    | 0.141    | 0.051285
+\#         | *wt% Ag* | *wt% Cu* | *Solid. v*
+|:--------:|:--------:|:--------:|:--------:|
+1          |0.237     |  0.141   |0.09143   |
+2          | 0.237    | 0.141    | 0.051285  
 3          | 0.2391   | 0.1389   | 0.0525
 4          | 0.2433   | 0.1347   | 0.0525
 5          | 0.2391   |0.1389    | 0.079125
