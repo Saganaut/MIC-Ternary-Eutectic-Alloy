@@ -2,8 +2,8 @@
 layout:     post
 title:     Linear Models of Process-Structure Behavior 
 date:       2015-11-01 
-author:    Robert Pienta 
-tags: 		In Progress
+author:    Almambet Iskakov 
+tags: 		
 ---
 <!-- Start Writing Below in Markdown -->
 
@@ -15,7 +15,7 @@ We have implemented a pipeline that performs both of these using Scikit-Learn, p
 Our cross-validation module allows for different types of cross-validators.
 
 # Linear Models
-We have finished our analysis of the different linear models and present the results below.
+We are working on our analysis of the different linear models and present the results below.
 
 ## Linear Regression
 Model form:
@@ -29,17 +29,24 @@ This is a the ordinary least squares approach discussed in class.
 ## Polynomial Fits 
 We used polynomial interpolation to model different potential representations for our data.
 We performed this by creating a new set of features consisting of the polynomial combinations of our features.
-We then performed OLS linear regression on the new feature space to find the best fit in the new space.
+We then performed OLS (ordinary least squares) linear regression on the new feature space to find the best fit in the new space.
 We tested only modest degrees as high degree polynomials are likely to heavily over-fit the our data. 
 
 ## Ridge Regression
+Ridge model can be a better suited to make predictions. This model also has less variance than OLS. In OLS, we are looking for && \beta && parameter, which we find by minimizing least squares of $$ (Y - X \beta)^2 &&. However, in ridge model, a parameter && \alpha && is used to bias && \beta && to now minimize  $$ ||Y - X \beta||^2 +||\alpha \betta||^2 &&. By introducing the && \alpha && term, the values of parameter && \beta && are now dependent on value of && \alpha &&. If && \alpha && is increased, && \beta && is forced to decrease. This is forcing large parameters to become smaller and might make the model avoid overfitting.
+
+A closed form solution for parameters is the following:
+&& \beta = (X^T X + \alpha I )^-1 X^T y &&
+if alpha is zero, then the model becomes an OLS.
 
 ## Lasso Regression
+This type of model is similar to Ridge in that there is a tuning parameter && \alpha &&. However, now the goal is to minimize $$ ||Y - X \beta||^2 +||\alpha \betta|| &&. The primary difference is that some of the && \beta && parameters in Lasso model can become zero if they are not relevant in the model, whereas in Ridge all the parameters are kept non-zero.
 
-# Non-linear Models
+<!--# Non-linear Models
 We have started an initial investigation into different techniques to perform our regression task.
 
-## Trees
+
+## Trees 
 We are now experimenting with trees to perform our regression. 
 Decision trees are constructed by splitting the starting data using a single threshold over one input feature. 
 The two remaining sets of inputs may then be recursively split in the same fashion until only a single datapoint is left in each subset--a leaf.
@@ -50,9 +57,11 @@ Each input must end up in a leaf, and that leaf's values are used as the predict
 An example from our data might look like this:  
 ![tree_view](/MIC-Ternary-Eutectic-Alloy/img/models_post/tree_example.png)
 
-
+-->
 #Performance
-![linear_view](/MIC-Ternary-Eutectic-Alloy/img/models_post/linear_example.png)
-While several of the high-degree polnoymials were able to fit the data well, CV shows that those results were over-fit.
+<!--![linear_view](/MIC-Ternary-Eutectic-Alloy/img/models_post/linear_example.png)
+While several of the high-degree polnoymials were able to fit the data well, CV shows that those results were over-fit.-->
 
-
+[tree_view](/MIC-Ternary-Eutectic-Alloy/img/models_post/linear_R2.png)
+[tree_view](/MIC-Ternary-Eutectic-Alloy/img/models_post/linear_MSE.png)
+Comparison of different linear models for preliminary results for linkage between PC space and solidification velocity (5-fold CV). Results show that Linear regression and Ridge models are better performers than Lasso.
