@@ -33,14 +33,14 @@ We then performed OLS (ordinary least squares) linear regression on the new feat
 We tested only modest degrees as high degree polynomials are likely to heavily over-fit the our data. 
 
 ## Ridge Regression
-Ridge model can be a better suited to make predictions. This model also has less variance than OLS. In OLS, we are looking for $$ \beta $$ parameter, which we find by minimizing least squares of $$ (Y - X \beta)^2 $$. However, in ridge model, a parameter $$ \alpha $$ is used to bias $$ \beta $$to now minimize  $$ ||Y - X \beta||^2 +||\alpha \betta||^2 $$. By introducing the $$ \alpha $$ term, the values of parameter $$ \beta $$ are now dependent on value of $$ \alpha $$. If $$ \alpha $$ is increased, $$ \beta $$ is forced to decrease. This is forcing large parameters to become smaller and might make the model avoid overfitting.
+Ridge model can be a better suited to make predictions. This model also has less variance than OLS. In OLS, we are looking for $$ \beta $$ parameter, which we find by minimizing least squares of $$ (Y - X \beta)^2 $$. However, in ridge model, a parameter $$ \alpha $$ is used to bias $$ \beta $$to now minimize  $$ ||Y - X \beta||^2 +||\alpha \beta||^2 $$. By introducing the $$ \alpha $$ term, the values of parameter $$ \beta $$ are now dependent on value of $$ \alpha $$. If $$ \alpha $$ is increased, $$ \beta $$ is forced to decrease. This is forcing large parameters to become smaller and might make the model avoid overfitting.
 
 A closed form solution for parameters is the following:
 $$ \beta = (X^T X + \alpha I )^-1 X^T y $$
 if alpha is zero, then the model becomes an OLS.
 
 ## Lasso Regression
-This type of model is similar to Ridge in that there is a tuning parameter $$ \alpha $$. However, now the goal is to minimize $$ ||Y - X \beta||^2 +||\alpha \betta|| $$. The primary difference is that some of the $$ \beta $$ parameters in Lasso model can become zero if they are not relevant in the model, whereas in Ridge all the parameters are kept non-zero.
+This type of model is similar to Ridge in that there is a tuning parameter $$ \alpha $$. However, now the goal is to minimize $$ ||Y - X \beta||^2 +||\alpha \beta|| $$. The primary difference is that some of the $$ \beta $$ parameters in Lasso model can become zero if they are not relevant in the model, whereas in Ridge all the parameters are kept non-zero.
 
 <!--# Non-linear Models
 We have started an initial investigation into different techniques to perform our regression task.
