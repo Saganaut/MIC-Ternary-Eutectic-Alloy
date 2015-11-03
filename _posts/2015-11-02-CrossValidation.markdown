@@ -50,10 +50,19 @@ Using the polynomial interpolation example above, consider the possible paramete
 ![gridcv](/MIC-Ternary-Eutectic-Alloy/img/cv_post/GridCV.png)
 Each leaf of this tree requires an entire $$K$$-fold or LOO CV run.
 
-If you are using pyMKS to perform homogenization then you can actually use grid optimization on more than just the estimator parameters.
-You can use it on the whole homogenization pipeline (i.e. number of pca components, which correlations, etc.)!
 
-References
+
+## Example Result
+If you are using pyMKS to perform homogenization then you can actually use grid optimization on more than just the estimator parameters.
+The pyMKS homogenization model operates like a scikit learn model, so you can easily use it with grid optimization.
+You can use it on the whole homogenization pipeline (i.e. number of pca components, which correlations, etc.)!
+![gridcv](/MIC-Ternary-Eutectic-Alloy/img/cv_post/GridCV.png)
+Here's an example result from when our pipeline was slightly abusing the process-structure pipeline code from pyMKS.
+It no longer does, so this plot is out of date, but proves that the optimization can be used well for homogenization.
+Thanks to David there's even support to generate the plot above in just a line of code.
+
+
+#References
 
 $$^1$$ Trevor Hastie, Robert Tibshirani, and Jerome Friedman. Springer Series in Statistics Springer New York Inc., New York, NY, USA, (2001)
 
