@@ -58,7 +58,9 @@ An example from our data might look like this:
 ![tree_view](/MIC-Ternary-Eutectic-Alloy/img/models_post/tree_example.png)
 
 -->
+
 # Performance
+
 <!--![linear_view](/MIC-Ternary-Eutectic-Alloy/img/models_post/linear_example.png)
 While several of the high-degree polnoymials were able to fit the data well, CV shows that those results were over-fit.-->
 
