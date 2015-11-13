@@ -1,19 +1,21 @@
 ---
 layout:     post
 title:      Post Headline
-date:       2015-01-01 12:00:00
-author:     Materials Innovation
-tags: 		result
+date:       2015-11-12 12:00:00
+author:     Almambet Iskakov
+tags: 		
 ---
 <!-- Start Writing Below in Markdown -->
 
-#Headers:
-
-# Header 1
-
 {{page.json}}
 
-## Header 2
+## Truncation of Spatial Statistics
+We realized that we can reduce our microstrucure images to a certain 'truncated' size while still retaining all the necessary structure information to represent the spatial statistics. This is one of the recent optimizations will that enable us to save computing time and memory in our project pipeline.
+
+Our current microstructures are 800x800 pixels, and therefore out spatial correlations are also 800x800, per correlation. Truncation will be performed on the microstructures, for which spatial correlations will be calculated.
+
+## Vector Size Trucation
+Above a certain vector size, the two point statistics oscillate around a value for which the probability between two local states becomes independent of each other. 
 
 ### Header 3
 
