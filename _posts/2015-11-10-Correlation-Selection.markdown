@@ -21,7 +21,7 @@ We report the $$R^2$$ values for each pair in the following matrix (self-pairs w
 ![r2_matrix](/MIC-Ternary-Eutectic-Alloy/img/correlations/correlations_r2.png)
 
 ## Why Al-Al and Ag-Ag
-The pairi, which performed the best, was surprisingly Al-Al and Ag-Ag (with Al-Al and Ag-Cu as the next runner up).
+The pair, which performed the best, was surprisingly Al-Al and Ag-Ag (with Al-Al and Ag-Cu as the next runner up).
 It makes sense that we would want the Al-Al auto-correlation, because Al is the most prevalent state in our system and forms important channels between the striated Ag and Cu in the final results.
 Our hypothesis was that Al-Ag would be the logical secondary cross-correlation as it would provide critical detail in the interaction between the 'rivers' of Al and the striated Ag-Cu 'islands'.
 Perhaps Al-Al covered enough about the structure of aluminum such that Al-Ag was less useful and therefore Ag-Ag or Ag-Cu provided the most missing information. 
