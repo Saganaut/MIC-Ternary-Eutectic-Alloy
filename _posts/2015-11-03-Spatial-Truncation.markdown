@@ -12,104 +12,25 @@ tags:
 ## Truncation of Spatial Statistics
 We realized that we can reduce our microstrucure images to a certain 'truncated' size while still retaining all the necessary structure information to represent the spatial statistics. This is one of the recent optimizations will that enable us to save computing time and memory in our project pipeline.
 
-Our current microstructures are 800x800 pixels, and therefore out spatial correlations are also 800x800, per correlation. Truncation will be performed on the microstructures, for which spatial correlations will be calculated.
+Our current microstructures are 800x800 pixels, and therefore out spatial correlations are also 800x800, per correlation. Truncation will be performed on the microstructures, for which spatial correlations will be calculated. An example of square truncation is shown below. 
+
+![vector_size](/MIC-Ternary-Eutectic-Alloy/img/truncation/truncation_schematic.png)
 
 ## Vector Size Trucation
-Above a certain vector size, the two point statistics oscillate around a value for which the probability between two local states becomes independent of each other. 
+Above a certain vector size, the two point statistics oscillate around a value for which the probability between two local states becomes independent of each other. In other words, the probability of finding state *h* and *h'* are not dependent on ecah other, $$ f[r,[h,h']] = f[r[h]]*f[r[h']] $$. So for autocorrelation, the threshold at wich the statistics become independent is $$ f[0,[h,h]]^2 $$ and for cross-correlation, $$ f[0,[h,h]]*f[0,[h',h']] $$. We also used a tolerance of 5%, meaning that values above 5% of the threshold were acceptable as independent probability.
 
-### Header 3
+Looking at the probabilities in the horizontal direction, as shown in the two image below, we see that the probability varies with vector size. In the second image, the probability is compared with the threshold value for one microstructure.
 
-#Styling:
+![vector_size](/MIC-Ternary-Eutectic-Alloy/img/truncation/truncation_schematic.png)
 
-**Bold**
+![horizontal_auto](/MIC-Ternary-Eutectic-Alloy/img/truncation/horizontal_auto.png)
 
-*Italics*
+Looking at all the rest of the datasets, we took the average of all the 2-point statistics (Al-Al, and Ag-Ag) for steady-state microstructures in our 21 datasets and repeated the recorded how many points are above our threshold values. Threshold values vary based on the dataset. Below is a representation of the how many points are above the threshold in horizontal and vertical directions based on the vector size. 
 
-***Bold and Italics***
+![combined_violation](/MIC-Ternary-Eutectic-Alloy/img/truncation/comdined_violations.png)
 
-#Lists:
+Based on the above plot we can see that truncating at vector size of 200 would be reasonable. For 21 datasets, the number of probabilities that are still dependent (conditional) in the truncated area is low, less that 4%. 
 
-1. Item 1
-
-2. Item 2
-
-* Unordered Item
-
-  * Sub Item 1
-
-    1. **Bold** Sub Sub Ordered Item
-
-#Links:
-
-[In-Line](https://www.google.com)
-
-[I'm a reference-style link 1][1]
-
-[I'm a reference-style link 1][2]
-
-[1]:https://www.mozilla.org
-[2]:http://www.reddit.com
-
-#Images:
-
-Hover your pointer over the image to expand the view.
-
-![Description](/project-pages/img/Logo_Fairy_Tail_right.png)
-
-#Code:
-
-Inline `code`.
-
-{% highlight python %}
-import numpy as np
-def hello_world():
-    print('Hello World!'')
-{% endhighlight %}
-
-#MathJax
-
-Use MathJax for Math.
-$$ A = \pi r^2 $$
-
-#Tables:
-
-Here | is | a | row!
-|---------|:----------|:----------:|---------:|
-is   |Left|  Center  |Right|
-a    | cut | it | A
-column  | short | B | C
-
-#Quotes
-
-> War does not decide who is *right*, only who is **left**.
-
-# Rule
-
----
-
-# HTML
-
-Can write the whole post or sections in HTML for very specific needs. [For the advanced user or the code savvy.]
-
-# Customized and Advanced Functionality
-
-Head over to the [documentation page](http://matin-hub.github.io/ppguide/) for tutorials on some basic html formatting and some extensions you can use for cool stuff like interactive 3D visualizations.
-
-# Some HTML Functionality
-
-## Color and Alignment
-
-<p align="center">This text is centered.</p>
-
-<p style="color:red">This is a red text with <span style="color:blue">blue</span> and <span style="color:green">green</span> inline text.</p>
-
-# Some Advanced Features
-
-## Data Projector
-
-<embed src="/project-pages/projectors/projector0001/" height="500px" width="100%">
-
-## STL
 
 <div align="center"><script src="https://embed.github.com/view/3d/matin-hub/project-pages/gh-pages/img/stl/test.stl"></script></div>
 
