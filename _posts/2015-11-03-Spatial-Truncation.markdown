@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Post Headline
+title:      Truncation of 2-Point Statistics
 date:       2015-11-12 12:00:00
 author:     Almambet Iskakov
 tags: 		
@@ -27,11 +27,10 @@ Looking at the probabilities in the horizontal direction, as shown in the two im
 
 Looking at all the rest of the datasets, we took the average of all the 2-point statistics (Al-Al, and Ag-Ag) for steady-state microstructures in our 21 datasets and repeated the recorded how many points are above our threshold values. Threshold values vary based on the dataset. Below is a representation of the how many points are above the threshold in horizontal and vertical directions based on the vector size. 
 
-![combined_violation](/MIC-Ternary-Eutectic-Alloy/img/truncation/comdined_violations.png)
+![combined_violation](/MIC-Ternary-Eutectic-Alloy/img/truncation/combined_violations.png)
 
 Based on the above plot we can see that truncating at vector size of 200 would be reasonable. For 21 datasets, the number of probabilities that are still dependent (conditional) in the truncated area is low, less that 4%. 
 
 
-<div align="center"><script src="https://embed.github.com/view/3d/matin-hub/project-pages/gh-pages/img/stl/test.stl"></script></div>
 
 
