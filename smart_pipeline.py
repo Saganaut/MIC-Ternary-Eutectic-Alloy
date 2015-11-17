@@ -136,6 +136,53 @@ def plot_sample_time_variation(block, n_comps=3):
   plt.savefig('PCA_over_block.png')
   quit()
   
+def plot_transient_time_variation(block, n_comps=3):
+  import matplotlib as mpl
+  import matplotlib.cm as cm
+  print '-->Plotting Time Variation'
+  if os.path.isfile('cache/corr_transient_example.pgz'):
+    print "-->Pickle found, loading corr directly"
+    with gzip.GzipFile('cache/corr_transient_example.pgz', 'r') as f:
+      x_pca = pickle.load(f)
+  else:
+    n = block.shape[0]
+    sample_ind = range(0,100)
+    corrs, corrs_flat = compute_correlations(block[sample_ind,:,:], correlations=[(0,0),(1,1)] )
+    pca = PCA(n_components=n_comps)
+    x_pca = pca.fit(corrs_flat).transform(corrs_flat)
+    with gzip.GzipFile('cache/corr_transient_example.pgz', 'w') as f:
+      pickle.dump(x_pca, f)
+  t = range(0,100)
+  x = [xi[0] for xi in x_pca]
+  y = [xi[1] for xi in x_pca]
+  norm = mpl.colors.Normalize(vmin=min(t), vmax=max(t))
+  mapper = cm.ScalarMappable(norm=norm, cmap=cm.cool)
+  colors = [mapper.to_rgba(ti) for ti in t]
+
+  f, (ax1, ax2, ax3) = plt.subplots(3, 1)
+  for ax in [ax1, ax2, ax3]:
+    for target in ['x', 'y']:
+      ax.tick_params(
+        axis=target,       # changes apply to the x-axis
+        which='both',      # both major and minor ticks are affected
+        bottom='off',      # ticks along the bottom edge are off
+        top='off',         # ticks along the top edge are off
+        left='off',
+        right='off',
+        labelbottom='on')  # labels along the bottom edge are off 
+  ax1.scatter(x, y, color=colors,alpha=0.5, edgecolors='black')
+  ax1.set_xlabel('PCA Score 1')
+  ax1.set_ylabel('PCA Score 2')
+  ax2.plot(t, x)
+  ax2.set_xlabel('Time')
+  ax2.set_ylabel('PC1')
+  ax3.plot(t, y)
+  ax3.set_xlabel('Time')
+  ax3.set_ylabel('PC2')
+  
+  plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
+  plt.savefig('PCA_over_transient.png')
+  quit()
 
 
 def plot_components(x, y, n_comps, linker_model, verbose=2):
@@ -179,11 +226,14 @@ def run_gridcv_linkage(x, y, model, params_to_tune, k_folds=5):
   # print('Number of Components'), (gs.best_estimator_.n_components)
   # print('R-squared Value'), (gs.score(X_test, y_test))
 
-def compute_correlations(x):
+def compute_correlations(x, correlations=None):
   print "-->Constructing Correlations"
   prim_basis = PrimitiveBasis(n_states=3, domain=[0,2])
   x_ = prim_basis.discretize(x)
-  x_corr = correlate(x_, periodic_axes=[0, 1])
+  if correlations == None:
+    x_corr = correlate(x_, periodic_axes=[0, 1])
+  else:
+    x_corr = correlate(x_, periodic_axes=[0, 1], correlations=correlations)
   x_corr_flat = np.ndarray(shape=(x.shape[0],  x_corr.shape[1]*x_corr.shape[2]*x_corr.shape[3]))
   row_ctr = 0
   for row in x_corr:
@@ -282,7 +332,11 @@ if __name__ == '__main__':
   #test_correlation_combos(x,y)
 
   # Plot blocks time varying behavior in PCA space. 
-  plot_sample_time_variation(load_data('data/test/'+metadata[0]['filename']))
+#  plot_sample_time_variation(load_data('data/test/'+metadata[0]['filename']))
+
+  # Plot blocks time varying behavior in PCA space. 
+  plot_transient_time_variation(load_data('data/test/'+metadata[0]['filename']))
+
 
   # PCA component variance plot
   #plot_component_variance(x, y[:,2])
