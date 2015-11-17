@@ -1,6 +1,6 @@
 
-data_path = '~/Dropbox/Project 8883/';
-new_path = '~/Documents/repos/project8883code/data/test/';
+data_path = 'C:\Users\almawa\Dropbox\Project 8883/';
+new_path = 'D:\Spring 15\Github\project8883\data/';
 listy = dir(data_path);
 % disp(listy)
 n = size(listy);

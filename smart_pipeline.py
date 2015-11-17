@@ -418,6 +418,3 @@ if __name__ == '__main__':
   #                 model.reduced_fit_data[6:9, :2],
   #                 model.reduced_fit_data[9:11, :2],
   #                 model.reduced_fit_data[11:, :2]], ['0.0525', '0.0593', '0.0773','0.0844', '>0.6'])
-
-
-
