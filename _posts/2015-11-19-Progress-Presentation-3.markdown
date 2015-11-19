@@ -46,6 +46,23 @@ vertical:		</section><section markdown="1">
 
 {{ page.horizontal }}
 ## Truncating statistics
+* Truncation based of average 2-pt statistics in each sample in steady state
+<iframe width="436" height="344" src="http://www.youtube.com/embed/ZlDdydWGbA4" frameborder="0" allowfullscreen>
+</iframe>
+*Al = Green, Ag<sub>2</sub>Al = Orange, and Al<sub>2</sub>Cu = Blue
+
+{{ page.vertical }}
+# Choosing a vector size
+<!-- Placeholder -->
+![vector_size](/MIC-Ternary-Eutectic-Alloy/img/truncation/truncation_schematic.png) 
+
+{{ page.vertical }}
+# Example for autocorrelation
+![horizontal_auto](/MIC-Ternary-Eutectic-Alloy/img/truncation/horizontal_auto.png)
+
+{{ page.vertical }}
+# All steady state data
+![combined_violation](/MIC-Ternary-Eutectic-Alloy/img/truncation/combined_violations.png)
 
 {{ page.horizontal }}
 
