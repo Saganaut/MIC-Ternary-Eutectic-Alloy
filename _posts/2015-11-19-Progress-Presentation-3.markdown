@@ -43,7 +43,17 @@ vertical:		</section><section markdown="1">
 
 {{ page.horizontal }}
 ## Reducing Correlations
+* Only two sets of correlations are dependent, clearly the model doesn't need all six
+* This doesn't mean all pairs of correlations will work equally!
+* We ran our entire pipeline on combinations of two correlations to see which perform the best
 
+{{ page.vertical }}
+* This was computationally expensive, but still feasible to do with just 6 choose 2 combinations.
+![r2](/MIC-Ternary-Eutectic-Alloy/img/correlations/correlations_r2.png)
+{{ page.vertical }}
+* Ag-Ag and Al-Al performed the best with $$r^2$$ around 0.74
+* Al-Al and Ag-Cu performed very close with $$r^2$$ around 0.72 
+![transient](/MIC-Ternary-Eutectic-Alloy/img/correlations/overall.png)
 {{ page.horizontal }}
 ## Truncating statistics
 * Truncation based of average 2-pt statistics in each sample in steady state
@@ -67,8 +77,26 @@ vertical:		</section><section markdown="1">
 {{ page.horizontal }}
 
 ## A New Pipeline
+We created a whole new pipeline to perform our transient data linkages.
+[workwork](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/transient_workflow.jpg)
+Its more than 100x more expensive than the previous pipeline
 {{ page.horizontal }}
+## Transient Data
+PCA components of a single simulation over time
+![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/PCA_over_block_allstats.png)
 
+* Wild oscillations until the early 100s 
+
+{{ page.vertical}}
+Here is just the first 100 points plotted out:
+![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/PCA_over_transient.png)
+
+{{ page.vertical}}
+A sanity check of our correlation pair from earlier
+![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/full_corr_vs_2_corr.png)
+
+
+{{ page.horizontal }}
 ## Expectations
 {{ page.vertical}}
 
