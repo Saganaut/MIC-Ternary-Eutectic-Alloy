@@ -121,7 +121,7 @@ def plot_sample_time_variation(block, n_comps=3):
         top='off',         # ticks along the top edge are off
         left='off',
         right='off',
-        labelbottom='on')  # labels along the bottom edge are off 
+        labelbottom='on')  # labels along the bottom edge are off
   ax1.scatter(x, y, color=colors,alpha=0.5, edgecolors='black')
   ax1.set_xlabel('PCA Score 1')
   ax1.set_ylabel('PCA Score 2')
@@ -131,11 +131,11 @@ def plot_sample_time_variation(block, n_comps=3):
   ax3.plot(t, y)
   ax3.set_xlabel('Time')
   ax3.set_ylabel('PC2')
-  
+
   plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
   plt.savefig('PCA_over_block.png')
   quit()
-  
+
 def plot_transient_time_variation(block, n_comps=3):
   import matplotlib as mpl
   import matplotlib.cm as cm
@@ -169,7 +169,7 @@ def plot_transient_time_variation(block, n_comps=3):
         top='off',         # ticks along the top edge are off
         left='off',
         right='off',
-        labelbottom='on')  # labels along the bottom edge are off 
+        labelbottom='on')  # labels along the bottom edge are off
   #ax1.scatter(x, y, color=colors,alpha=0.5, edgecolors='black')
   ax1.scatter(range(0,800, 8), np.ones((100,1)), color=colors,alpha=0.5, edgecolors='black')
   #ax1.set_xlim([-150,150])
@@ -181,7 +181,7 @@ def plot_transient_time_variation(block, n_comps=3):
   ax3.plot(t, y)
   ax3.set_xlabel('Time')
   ax3.set_ylabel('PC2')
-  
+
   plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
   plt.savefig('PCA_over_transient.png')
   quit()
@@ -213,11 +213,11 @@ def plot_components(x, y, n_comps, linker_model, verbose=2):
                     'Ag:0.237	Cu:0.141	v:0.0512'])
 
 def plot_a_tree(clf):
-  from sklearn.externals.six import StringIO  
-  import pydot 
-  dot_data = StringIO() 
+  from sklearn.externals.six import StringIO
+  import pydot
+  dot_data = StringIO()
   tree.export_graphviz(clf, out_file=dot_data)
-  graph = pydot.graph_from_dot_data(dot_data.getvalue()) 
+  graph = pydot.graph_from_dot_data(dot_data.getvalue())
   graph.write_png("tree_example.png")
 
 def run_gridcv_linkage(x, y, model, params_to_tune, k_folds=5):
@@ -291,7 +291,11 @@ def test_correlation_combos(x,y):
   ax.set_title('R^2 for pairs of correlations')
   plt.show()
 
-
+def write_pca_to_csv(pcas, title=""):
+  with open('data/pca_scores'+title+'.csv', 'wb') as csvfile:
+    spamwriter = csv.writer(csvfile, delimiter=',')
+    for row in pcas:
+      spamwriter.writerow(row)
 
 
   #~~~~~~~MAIN~~~~~~~
@@ -306,7 +310,7 @@ if __name__ == '__main__':
       x, y = pickle.load(f)
   else:
     if not os.path.isdir('cache'):
-      os.mkdir('cache') 
+      os.mkdir('cache')
     # Set up the inputs and output containers
     samples = len(metadata)
     x=np.ndarray(shape=(samples, metadata[0]['x'], metadata[0]['y']))
@@ -335,11 +339,11 @@ if __name__ == '__main__':
   # Test correlation params
   #test_correlation_combos(x,y)
 
-  # Plot blocks time varying behavior in PCA space. 
+  # Plot blocks time varying behavior in PCA space.
 #  plot_sample_time_variation(load_data('data/test/'+metadata[0]['filename']))
 
-  # Plot blocks time varying behavior in PCA space. 
-  plot_transient_time_variation(load_data('data/test/'+metadata[0]['filename']))
+  # Plot blocks time varying behavior in PCA space.
+  #plot_transient_time_variation(load_data('data/test/'+metadata[0]['filename']))
 
 
   # PCA component variance plot
@@ -351,6 +355,7 @@ if __name__ == '__main__':
   x_corr, x_corr_flat = compute_correlations(x)
   # Use PCA on flattened correlations
   x_pca = compute_pca_scores(x_corr_flat)
+  write_pca_to_csv(x_pca, '_steady_state')
 # LINEAR
   print "-->Optimizing Linkers"
   with open('data/linker_results_r2_data.csv', 'w') as csv_file:
@@ -418,7 +423,7 @@ if __name__ == '__main__':
       print('---->n_est:'), (opt_model.best_estimator_.n_estimators)
       r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,opt_model)
 
- 
+
 
   quit()
 
