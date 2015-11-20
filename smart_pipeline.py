@@ -170,7 +170,9 @@ def plot_transient_time_variation(block, n_comps=3):
         left='off',
         right='off',
         labelbottom='on')  # labels along the bottom edge are off 
-  ax1.scatter(x, y, color=colors,alpha=0.5, edgecolors='black')
+  #ax1.scatter(x, y, color=colors,alpha=0.5, edgecolors='black')
+  ax1.scatter(range(0,800, 8), np.ones((100,1)), color=colors,alpha=0.5, edgecolors='black')
+  #ax1.set_xlim([-150,150])
   ax1.set_xlabel('PCA Score 1')
   ax1.set_ylabel('PCA Score 2')
   ax2.plot(t, x)
@@ -226,7 +228,7 @@ def run_gridcv_linkage(x, y, model, params_to_tune, k_folds=5):
   # print('Number of Components'), (gs.best_estimator_.n_components)
   # print('R-squared Value'), (gs.score(X_test, y_test))
 
-def compute_correlations(x, correlations=None):
+def compute_correlations(x, correlations=None, compute_flat=True):
   print "-->Constructing Correlations"
   prim_basis = PrimitiveBasis(n_states=3, domain=[0,2])
   x_ = prim_basis.discretize(x)
@@ -234,12 +236,14 @@ def compute_correlations(x, correlations=None):
     x_corr = correlate(x_, periodic_axes=[0, 1])
   else:
     x_corr = correlate(x_, periodic_axes=[0, 1], correlations=correlations)
-  x_corr_flat = np.ndarray(shape=(x.shape[0],  x_corr.shape[1]*x_corr.shape[2]*x_corr.shape[3]))
-  row_ctr = 0
-  for row in x_corr:
-    x_corr_flat[row_ctr] = row.flatten()
-    row_ctr += 1
-  return x_corr, x_corr_flat
+  if compute_flat:
+    x_corr_flat = np.ndarray(shape=(x.shape[0],  x_corr.shape[1]*x_corr.shape[2]*x_corr.shape[3]))
+    row_ctr = 0
+    for row in x_corr:
+      x_corr_flat[row_ctr] = row.flatten()
+      row_ctr += 1
+    return x_corr, x_corr_flat
+  return x_corr
 
 def test_polynomial_fits(x, y, n_comps, model, k_folds=5):
   for i in range(1,6):
