@@ -77,9 +77,10 @@ vertical:		</section><section markdown="1">
 {{ page.horizontal }}
 
 ## A New Pipeline
-We created a whole new pipeline to perform our transient data linkages.
-[workwork](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/transient_workflow.jpg)
-Its more than 100x more expensive than the previous pipeline
+* We created a whole new pipeline to perform our transient data linkages.
+* Its more than 100x more expensive than the previous pipeline
+{{ page.vertical }}
+![workwork](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/transient_workflow.jpg)
 {{ page.horizontal }}
 ## Transient Data
 PCA components of a single simulation over time
