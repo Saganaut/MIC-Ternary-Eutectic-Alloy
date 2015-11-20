@@ -52,16 +52,16 @@ vertical:		</section><section markdown="1">
 *Al = Green, Ag<sub>2</sub>Al = Orange, and Al<sub>2</sub>Cu = Blue
 
 {{ page.vertical }}
-# Choosing a vector size
+### Choosing a vector size
 <!-- Placeholder -->
 ![vector_size](/MIC-Ternary-Eutectic-Alloy/img/truncation/truncation_schematic.png) 
 
 {{ page.vertical }}
-# Example for autocorrelation
+### Example for autocorrelation
 ![horizontal_auto](/MIC-Ternary-Eutectic-Alloy/img/truncation/horizontal_auto.png)
 
 {{ page.vertical }}
-# All steady state data
+### All steady state data
 ![combined_violation](/MIC-Ternary-Eutectic-Alloy/img/truncation/combined_violations.png)
 
 {{ page.horizontal }}
