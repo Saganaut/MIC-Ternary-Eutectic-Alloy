@@ -21,7 +21,7 @@ Above a certain vector size, the two point statistics oscillate around a value f
 
 Looking at the probabilities in the horizontal direction, as shown in the two image below, we see that the probability varies with vector size. In the second image, the probability is compared with the threshold value for one microstructure.
 
-![vector_size](/MIC-Ternary-Eutectic-Alloy/img/truncation/horizontal_vector.png)
+![vector_size](/MIC-Ternary-Eutectic-Alloy/img/truncation/truncation_vector.png)
 
 ![horizontal_auto](/MIC-Ternary-Eutectic-Alloy/img/truncation/horizontal_auto.png)
 
