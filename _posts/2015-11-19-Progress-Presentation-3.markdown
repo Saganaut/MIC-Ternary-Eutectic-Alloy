@@ -42,7 +42,7 @@ vertical:		</section><section markdown="1">
 * Use time-varying regression to model our simulation data
 
 {{ page.vertical }}
-![steady](/MIC-Ternary-Eutectic-Alloy/img/correlations/regplot.png)
+![steady](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/regplot.png)
 
 
 {{ page.horizontal }}
