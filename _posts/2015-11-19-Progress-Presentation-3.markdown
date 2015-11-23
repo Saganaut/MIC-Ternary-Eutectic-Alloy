@@ -1,7 +1,7 @@
 ---
 layout:     	slide
 title:     	Progress Report III (Pres)	
-date:      	2015-11-19 
+date:      	2015-11-23 
 author:     	Almambet Iskakov, Robert Pienta
 
 theme:		solarized # default/beige/blood/moon/night/serif/simple/sky/solarized
