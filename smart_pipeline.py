@@ -80,7 +80,7 @@ def plot_component_variance(x, y):
   # Draw the plot containing the PCA variance accumulation
   draw_component_variance(model.dimension_reducer.explained_variance_ratio_)
 
-def run_conventional_linkage(x, y, n_comps, linker_model, verbose=0, k_folds=5):
+def run_conventional_linkage(x, y, n_comps, linker_model, verbose=0, k_folds=3):
   print "---->Cross validating"
   cvs = cross_val_score(linker_model, x, y, cv=k_folds, scoring='r2', verbose=verbose)
   mse = cross_val_score(linker_model, x, y, cv=k_folds, scoring='mean_squared_error', verbose=verbose)
@@ -186,15 +186,31 @@ def plot_transient_time_variation(block, n_comps=3):
   plt.savefig('PCA_over_transient.png')
   quit()
 
-def plot_regression_function(model, x, y):
+def plot_regression_function(model, x, y, label=None):
+  s_plot = np.linspace(0.0525, 0.091, 100)
+  ag_plot = np.linspace(0.237, 0.2433, 100)
+  synth_data = np.zeros((100,2))
+  synth_data[:, 0] = ag_plot
+  synth_data[:, 1] = s_plot
+  f, (ax, ax1) = plt.subplots(2,1)
+  ax.set_title('PCA 1 vs Inputs')
   print x.shape
   print y.shape
-  plt.scatter(x[:,1], y[:,1],  color='black')
-  y_res = model.predict(x)
-  print y_res.shape
-  plt.scatter(x[:,1], y_res[:,1], color='red')
+  ax.scatter(x[:,1], y[:,0],  color='black')
+  preds = model.predict(synth_data)
+  ax.plot(s_plot, preds[:,0], color='red', label=label)
+  ax.set_ylabel('PCA 1')
+  ax.set_xlabel('v_s')
+
+  ax1.scatter(x[:,0], y[:,0],  color='black')
+  ax1.plot(ag_plot, preds[:,1], color='red', label=label)
+  ax1.set_ylabel('PCA 1')
+  ax1.set_xlabel('% Ag')
+
+  plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
   plt.show()
   quit()
+
 
 def plot_components(x, y, n_comps, linker_model, verbose=2):
   prim_basis = PrimitiveBasis(n_states=3, domain=[0, 2])
@@ -223,13 +239,17 @@ def plot_components(x, y, n_comps, linker_model, verbose=2):
 
 def plot_a_tree(clf):
   from sklearn.externals.six import StringIO
-  import pydot
+  try:
+    import pydot
+  except:
+    print 'Error: Install Pydot if you want a tree drawn.'
+    return 'No Pydot installed'
   dot_data = StringIO()
   tree.export_graphviz(clf, out_file=dot_data)
   graph = pydot.graph_from_dot_data(dot_data.getvalue())
   graph.write_png("tree_example.png")
 
-def run_gridcv_linkage(x, y, model, params_to_tune, k_folds=5):
+def run_gridcv_linkage(x, y, model, params_to_tune, k_folds=3):
   # fit_params = {'periodic_axes':[0, 1]}
   gs = GridSearchCV(model, params_to_tune, cv=k_folds, n_jobs=2, scoring='mean_squared_error').fit(x, y)
   return gs
@@ -254,7 +274,7 @@ def compute_correlations(x, correlations=None, compute_flat=True):
     return x_corr, x_corr_flat
   return x_corr
 
-def test_polynomial_fits(x, y, n_comps, model, k_folds=5):
+def test_polynomial_fits(x, y, n_comps, model, k_folds=3):
   for i in range(1,6):
     poly = PolynomialFeatures(degree=i)
     poly_x = poly.fit_transform(x)
@@ -312,6 +332,7 @@ if __name__ == '__main__':
   # Load the metadata
   print "-->Loading Metadata"
   metadata = load_metadata('data/metadata_all.tsv')
+  # metadata = load_metadata('data/metadata_all_no_funny_bizness.tsv')
 
   if os.path.isfile('cache/x_y_data.pgz'):
     print "-->Pickle found, loading x and y directly"
@@ -323,7 +344,7 @@ if __name__ == '__main__':
     # Set up the inputs and output containers
     samples = len(metadata)
     x=np.ndarray(shape=(samples, metadata[0]['x'], metadata[0]['y']))
-    y=np.ndarray(shape=(samples, 3))
+    y=np.ndarray(shape=(samples, 2))
     solid_vel=np.ndarray(shape=(samples, 3))
 
     # For each sample sim in our dataset:
@@ -346,12 +367,12 @@ if __name__ == '__main__':
       pickle.dump((x,y), f)
 
   # Test correlation params
-  #test_correlation_combos(x,y)
+  # test_correlation_combos(x,y)
 
   # Plot blocks time varying behavior in PCA space.
 #  plot_sample_time_variation(load_data('data/test/'+metadata[0]['filename']))
 
-  # Plot blocks time varying behavior in PCA space. 
+  # Plot blocks time varying behavior in PCA space.
 #  plot_transient_time_variation(load_data('data/test/'+metadata[0]['filename']))
 
 
@@ -361,7 +382,7 @@ if __name__ == '__main__':
   # Plot components in pca space
 #  plot_components(x,y, 5, linear_model.LinearRegression())
 
-  x_corr, x_corr_flat = compute_correlations(x)
+  x_corr, x_corr_flat = compute_correlations(x, correlations=[(0,0),(0,2)])
   # Use PCA on flattened correlations
   x_pca = compute_pca_scores(x_corr_flat)
   write_pca_to_csv(x_pca, '_steady_state')
@@ -380,8 +401,8 @@ if __name__ == '__main__':
       r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,opt_model)
       csv_writer.writerow(['LinearRegression', r2_mean, r2_std])
       csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
-      plot_regression_function(opt_model.best_estimator_, y, x_pca[:, :2])
-      
+      plot_regression_function(opt_model.best_estimator_, y, x_pca[:, :2], 'LinearModel')
+
       test_polynomial_fits(y,x_pca,5,opt_model)
       print
       print "--->Lasso"

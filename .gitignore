@@ -9,3 +9,5 @@ data/linker_results_r2_data.csv
 data/linker_results_mse_data.csv
 data/test/quasi*
 cache/
+data/pca_scores_steady_state.csv
+*.csv
