@@ -1,7 +1,7 @@
 ---
 layout:     	slide
-title:     	Progress Report III (Pres)	
-date:      	2015-11-23 
+title:     	Progress Report III (Pres)
+date:      	2015-11-23
 author:     	Almambet Iskakov, Robert Pienta
 
 theme:		solarized # default/beige/blood/moon/night/serif/simple/sky/solarized
@@ -25,21 +25,25 @@ vertical:		</section><section markdown="1">
 ##Quick Recap
 * Reduce our correlations to only the essential
 
-* Truncate the 2-pt statistics 
+* Truncate the 2-pt statistics
 
 * Study our transient data
 
 * Use time-varying regression to model our simulation data
 
-{{ page.vertical }} 
+{{ page.vertical }}
 
-*  Reduce our correlations to only the essential ✓ 
+*  Reduce our correlations to only the essential ✓
 
-* Truncate the 2-pt statistics ✓ 
+* Truncate the 2-pt statistics ✓
 
-* Study our transient data ✓ 
+* Study our transient data ✓
 
 * Use time-varying regression to model our simulation data
+
+{{ page.vertical }}
+![steady](/MIC-Ternary-Eutectic-Alloy/img/correlations/regplot.png)
+
 
 {{ page.horizontal }}
 ## Reducing Correlations
@@ -52,7 +56,7 @@ vertical:		</section><section markdown="1">
 ![r2](/MIC-Ternary-Eutectic-Alloy/img/correlations/correlations_r2.png)
 {{ page.vertical }}
 * Ag-Ag and Al-Al performed the best with $$r^2$$ around 0.74
-* Al-Al and Ag-Cu performed very close with $$r^2$$ around 0.72 
+* Al-Al and Ag-Cu performed very close with $$r^2$$ around 0.72
 ![transient](/MIC-Ternary-Eutectic-Alloy/img/correlations/overall.png)
 {{ page.horizontal }}
 ## Truncating statistics
@@ -65,7 +69,7 @@ vertical:		</section><section markdown="1">
 {{ page.vertical }}
 ### Choosing a vector size
 <!-- Placeholder -->
-![vector_size](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/truncation_vector.png) 
+![vector_size](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/truncation_vector.png)
 
 {{ page.vertical }}
 ### Example for autocorrelation
@@ -87,7 +91,7 @@ vertical:		</section><section markdown="1">
 PCA components of a single simulation over time
 ![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/PCA_over_block_allstats.png)
 
-* Wild oscillations until the early 100s 
+* Wild oscillations until the early 100s
 
 {{ page.vertical}}
 Here are just the first 100 points plotted out:
