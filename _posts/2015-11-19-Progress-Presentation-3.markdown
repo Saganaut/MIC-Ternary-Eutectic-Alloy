@@ -89,7 +89,7 @@ PCA components of a single simulation over time
 * Wild oscillations until the early 100s 
 
 {{ page.vertical}}
-Here is just the first 100 points plotted out:
+Here are just the first 100 points plotted out:
 ![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/PCA_over_transient.png)
 
 {{ page.vertical}}
@@ -99,9 +99,9 @@ A sanity check of our correlation pair from earlier
 
 {{ page.horizontal }}
 ## Future Work
-* (Nov) we are working on modeling the time-varying behavior of our system
-* (Nov) we will write up a post about what we did, and our results 
-* (Nov) a final post comparing and visualizing the models of our steady-state investigation
+* (Nov) modeling the time-varying behavior of our system (we are close!)
+* (Nov) post about transience
+* (Nov) post about steady state performance
 * (Dec) Final "In Summa" Post
 * (Dec) Final Presentation
 
