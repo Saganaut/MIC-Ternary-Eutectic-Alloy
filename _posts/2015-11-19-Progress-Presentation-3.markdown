@@ -64,7 +64,7 @@ vertical:		</section><section markdown="1">
 
 <iframe width="436" height="344" src="http://www.youtube.com/embed/ZlDdydWGbA4" frameborder="0" allowfullscreen>
 </iframe>
-*Al = Green, Ag<sub>2</sub>Al = Orange, and Al<sub>2</sub>Cu = Blue
+* Al = Green, Ag<sub>2</sub>Al = Orange, and Al<sub>2</sub>Cu = Blue
 
 {{ page.vertical }}
 ### Choosing a vector size
@@ -87,7 +87,7 @@ vertical:		</section><section markdown="1">
 {{ page.vertical }}
 ![workwork](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/transient_workflow.jpg)
 {{ page.horizontal }}
-## Transient Data
+### Transient Data
 PCA components of a single simulation over time
 ![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/PCA_over_block_allstats.png)
 
