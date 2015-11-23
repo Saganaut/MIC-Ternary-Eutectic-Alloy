@@ -186,6 +186,15 @@ def plot_transient_time_variation(block, n_comps=3):
   plt.savefig('PCA_over_transient.png')
   quit()
 
+def plot_regression_function(model, x, y):
+  print x.shape
+  print y.shape
+  plt.scatter(x[:,1], y[:,1],  color='black')
+  y_res = model.predict(x)
+  print y_res.shape
+  plt.scatter(x[:,1], y_res[:,1], color='red')
+  plt.show()
+  quit()
 
 def plot_components(x, y, n_comps, linker_model, verbose=2):
   prim_basis = PrimitiveBasis(n_states=3, domain=[0, 2])
@@ -339,7 +348,7 @@ if __name__ == '__main__':
 #  plot_sample_time_variation(load_data('data/test/'+metadata[0]['filename']))
 
   # Plot blocks time varying behavior in PCA space. 
-  plot_transient_time_variation(load_data('data/test/'+metadata[0]['filename']))
+#  plot_transient_time_variation(load_data('data/test/'+metadata[0]['filename']))
 
 
   # PCA component variance plot
@@ -366,7 +375,8 @@ if __name__ == '__main__':
       r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,opt_model)
       csv_writer.writerow(['LinearRegression', r2_mean, r2_std])
       csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
-
+      plot_regression_function(opt_model.best_estimator_, y, x_pca[:, :2])
+      
       test_polynomial_fits(y,x_pca,5,opt_model)
       print
       print "--->Lasso"
