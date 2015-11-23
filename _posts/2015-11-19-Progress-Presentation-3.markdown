@@ -65,7 +65,7 @@ vertical:		</section><section markdown="1">
 {{ page.vertical }}
 ### Choosing a vector size
 <!-- Placeholder -->
-![vector_size](/MIC-Ternary-Eutectic-Alloy/img/truncation/truncation_vector.png) 
+![vector_size](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/truncation_vector.png) 
 
 {{ page.vertical }}
 ### Example for autocorrelation
@@ -73,7 +73,7 @@ vertical:		</section><section markdown="1">
 
 {{ page.vertical }}
 ### All steady state data
-![combined_violation](/MIC-Ternary-Eutectic-Alloy/img/truncation/truncation_loss.png)
+![combined_violation](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/truncation_loss.png)
 
 {{ page.horizontal }}
 
