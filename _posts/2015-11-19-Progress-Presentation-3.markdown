@@ -57,6 +57,7 @@ vertical:		</section><section markdown="1">
 {{ page.horizontal }}
 ## Truncating statistics
 * Truncation based of average 2-pt statistics in each sample in steady state
+
 <iframe width="436" height="344" src="http://www.youtube.com/embed/ZlDdydWGbA4" frameborder="0" allowfullscreen>
 </iframe>
 *Al = Green, Ag<sub>2</sub>Al = Orange, and Al<sub>2</sub>Cu = Blue
