@@ -98,18 +98,14 @@ A sanity check of our correlation pair from earlier
 
 
 {{ page.horizontal }}
-## Expectations
-{{ page.vertical}}
-
-## Challenges
+## Future Work
+* (Nov) we are working on modeling the time-varying behavior of our system
+* (Nov) we will write up a post about what we did, and our results 
+* (Nov) a final post comparing and visualizing the models of our steady-state investigation
+* (Dec) Final "In Summa" Post
+* (Dec) Final Presentation
 
 {{ page.horizontal }}
-
-![3D-DS](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/pca.png)
-
-* Previously we had 11 datasets
-
-{{ page.vertical }}
 
 #[Print]({{ site.url }}{{ site.baseurl }}{{ page.url }}/?print-pdf#)
 
