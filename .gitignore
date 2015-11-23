@@ -7,3 +7,5 @@ data/test/.DS_Store
 *.DS_Store
 data/linker_results_r2_data.csv
 data/linker_results_mse_data.csv
+data/test/quasi*
+cache/
