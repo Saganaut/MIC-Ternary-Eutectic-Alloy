@@ -45,9 +45,11 @@ Other challenges.
 
 ##Final PCA Results - Steady State
 
-##Pricess-Property Linkage Model
+##Process-Property Linkage Model
 
 ##Exploring Transient Data
+
+##Summary
 
 ##Future Work
 
