@@ -19,10 +19,12 @@ author:     Almambet Iskakov, Robert Pienta
 ##Project Definition
 
 ###Description
-Our data is a product of a phase field simulations on the microstructure evolution in directional solidification of a aluminum-silver-copper ternary eutectoid alloy. The data consists of 21 datasets, while each dataset contains the microstructure infomation through time, from beginning of simulation to steady state. The simulations include varied concentrations and solidification velocities to simulate effect of process parameters of the final microstructure.
+Our data is a product of a phase field simulations on the microstructure evolution in directional solidification of a aluminum-silver-copper ternary eutectoid alloy. The data consists of 21 datasets, while each dataset contains the microstructure infomation through time, from beginning of simulation to steady state. The simulations include varied concentrations and solidification velocities, but the same initial microstructure.
 
 ##Dataset
-The data consist of 21 simulation results datasets, each dataset is 301 microstructure images with 800x800 pixel resolution. For each simulation, the concentration of Al, Ag, and Cu, and solidification velocities is specified. The microstructure image data is can be characterize in the following way 21x301x800x800 in terms of pixel information. Below is a tabulated display of the process parameters.
+The data consist of 21 simulation results datasets, each dataset is 301 microstructure images with 800x800 pixel resolution. For each simulation, the concentration of Al, Ag, and Cu, and solidification velocities is specified. The microstructure image data is can be characterize in the following way 21x301x800x800 in terms of pixel information. Below is a tabulated display of the process parameters:
+
+[Tabulated parameters go here]
 
 
 The microstructure consists of 3 phases, Al, Al-Ag, and Al-Cu. Here's an example of a single simulation from our dataset.
