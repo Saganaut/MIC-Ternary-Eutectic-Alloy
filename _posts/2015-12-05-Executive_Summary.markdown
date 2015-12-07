@@ -2,7 +2,7 @@
 layout:     post
 title:     	Executive Summary (In Progress)
 date:      	2015-12-05
-author:     Robert Pienta, Almambet Iskakov
+author:     Almambet Iskakov, Robert Pienta
 ---
 <section markdown="1" data-background="http://matin-hub.github.io/project-pages/img/slidebackground.png"><section markdown="1">
 ## {{ page.title }}
@@ -11,7 +11,7 @@ author:     Robert Pienta, Almambet Iskakov
 
 #### {{ page.author }}
 
-#### {{ page.date | | date: "%I %M %p ,%a, %b %d %Y"}}
+#### {{ page.date | | date: "%b %d %Y"}}
 
 {% raw  %}{% endraw %}
 <!-- Start Writing Below in Markdown -->
