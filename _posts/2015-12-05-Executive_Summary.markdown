@@ -16,7 +16,8 @@ author:     Almambet Iskakov, Robert Pienta
 {% raw  %}{% endraw %}
 <!-- Start Writing Below in Markdown -->
 
-##Project Definition
+##Project Objectives
+Create a model linking our simulated process data with a representation of the steady-state microstructures.
 
 ###Description
 Our data is a product of a phase field simulations on the microstructure evolution in directional solidification of a aluminum-silver-copper ternary eutectoid alloy. The data consists of 21 datasets, while each dataset contains the microstructure infomation through time, from beginning of simulation to steady state. The simulations include varied concentrations and solidification velocities, but the same initial microstructure.
@@ -44,10 +45,17 @@ Other challenges.
 
 
 ##2 Point Statistics
-We extracted 2-point spatial statistics for our data. We assumed a periodic boundary condition for both the x- and y-axis.
+We extracted 2-point spatial correlation statistics for our data.  We assumed a periodic boundary condition for both the x- and y-axis. These statistics will become the per-sample measurements we reduce via PCA. We utilized pyMKS for our pipeline. The following figure shows a single visualzed spatial correlation:
+
+SAMPLE STATS HERE 
+
 
 ##2 Point Statistics Optimization
-We investigated which resolutions of 2-pt statistics offered a good balance between computational speed and accuracy.
+Each 2-point statistic is an 800x800 field showing phase-phase correlations. Not all of this region is likely to be statistically meaningful, so we investigated which resolutions of 2-pt statistics offered a good balance between computational speed and accuracy. The truncation is done symmetrically, which is consistent with a our periodic assumption.
+![vector_size](/MIC-Ternary-Eutectic-Alloy/img/truncation/truncation_schematic.png)
+
+The following plot demonstrates the amount of statistically significant measurements in the cut region. 
+![combined_violation](/MIC-Ternary-Eutectic-Alloy/img/truncation/combined_violations.png)
 
 
 
@@ -55,17 +63,17 @@ We investigated which resolutions of 2-pt statistics offered a good balance betw
 We used PCA to reduce the large 2-pt statistics to a low rank representation.
 Our data exhibit reasonable variance falloff.
 
-![steady](/MIC-Ternary-Eutectic-Alloy/img/exec_summary/decay.png)
+![decay](/MIC-Ternary-Eutectic-Alloy/img/exec_summary/decay.png)
 
 ##PCA Optimization
 We also investigated which pairs of correlations perform best with our entire pipeline.
 Since we have only three phases, we know that the entirety of the correlations can be calculated from two of them.
 We chose to run the pipeline for all pairs of correlations and use the pair with best final model performance (minimal MSE).
 
-![steady](/MIC-Ternary-Eutectic-Alloy/img/exec_summary/correlations_mse.png)
+![mse](/MIC-Ternary-Eutectic-Alloy/img/exec_summary/correlations_mse.png)
 
 This is a huge space savings for the PCA step.
-![steady](/MIC-Ternary-Eutectic-Alloy/img/correlations/matrix_size.png)
+![savings](/MIC-Ternary-Eutectic-Alloy/img/correlations/matrix_size.png)
 
 
 ##Final PCA Results - Steady State
@@ -76,9 +84,9 @@ Wild oscillations occur in our data until the early 120s. For our steady-state i
 ##Process-Property Linkage Model
 We tried multiple models to predict the linkage between process parameters and 2-point statistics.
 Here are the final MSE scores for several optimized models.
-![steady](/MIC-Ternary-Eutectic-Alloy/img/exec_summary/MSE.png)
+![mse2](/MIC-Ternary-Eutectic-Alloy/img/exec_summary/MSE.png)
 Here's an linear model fit two the first two PCA scores.
-![steady](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/regplot.png)
+![regression](/MIC-Ternary-Eutectic-Alloy/img/milestone4_pres/regplot.png)
 
 
 ##Exploring Transient Data
@@ -88,4 +96,6 @@ Here's an linear model fit two the first two PCA scores.
 ##Future Work
 
 ##Acknowledgements
+We would like to thank Dr. Surya Kalidindi, Yuksel Yabansu, David Brough, and Ahmet Cecen.
+ 
 
