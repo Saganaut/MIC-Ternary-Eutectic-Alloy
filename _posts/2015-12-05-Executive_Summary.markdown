@@ -44,8 +44,7 @@ At the beginning of the project we were expecting a large set of data based on t
 ##2 Point Statistics
 We extracted 2-point spatial correlation statistics for our data.  We assumed a periodic boundary condition for both the x- and y-axis. These statistics will become the per-sample measurements we reduce via PCA. We utilized pyMKS for our pipeline. The following figure shows a single visualzed spatial correlation:
 
-SAMPLE STATS HERE 
-
+![sample_correlations](/MIC-Ternary-Eutectic-Alloy/img/exec_summary/sample_correlations.png)
 
 ##2 Point Statistics Optimization
 Each 2-point statistic is an 800x800 field showing phase-phase correlations. Not all of this region is likely to be statistically meaningful, so we investigated which resolutions of 2-pt statistics offered a good balance between computational speed and accuracy. The truncation is done symmetrically, which is consistent with a our periodic assumption.
