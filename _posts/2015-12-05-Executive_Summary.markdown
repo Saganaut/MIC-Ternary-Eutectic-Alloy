@@ -20,7 +20,7 @@ author:     Almambet Iskakov, Robert Pienta
 Create a model linking our simulated process data with a representation of the steady-state microstructures.
 
 ###Description
-Our data is a product of a phase-field simulations on the microstructure evolution in directional solidification of a aluminum-silver-copper ternary eutectoid alloy. The data consists of 21 datasets, while each dataset contains the microstructure infomation through time, from beginning of simulation to steady state. The simulations include varied concentrations and solidification velocities, but the same initial microstructure. The data was provided from Karlsruhe Institute of Technology in Germany to Georgia Tech for collaboration.
+Our data is a product of a phase-field simulations on the microstructure evolution in directional solidification of a aluminum-silver-copper ternary eutectoid alloy. The data consists of 21 datasets, while each dataset contains the microstructure information through time, from beginning of simulation to steady state. The simulations include varied concentrations and solidification velocities, but the same initial microstructure. The data was provided from Karlsruhe Institute of Technology in Germany to Georgia Tech for collaboration.
 
 ##Dataset
 The data consist of 21 simulation results datasets, each dataset is 301 microstructure images with 800x800 pixel resolution. For each simulation, the concentration of Al, Ag, and Cu, and solidification velocities is specified. The microstructure image data is can be characterize in the following way 21x301x800x800 in terms of pixel information. Below is a plot of the simulation process parameters:
@@ -46,7 +46,7 @@ There were fewer process (input) variables into the simulation than we expected,
 At the beginning of the project we were expecting a large set of data based on the simulations metadata. However, as the semester progressed, we realized that our data was capped at 21 datasets. And since these simulations were performed by collaborators at Karlsruhe Institute of Technology in Germany, we were limited to what received.
 
 ##2 Point Statistics
-We extracted 2-point spatial correlation statistics for our data.  We assumed a periodic boundary condition for both the x- and y-axis. These statistics will become the per-sample measurements we reduce via PCA. We utilized pyMKS for our pipeline. The following figure shows a single visualzed spatial correlation:
+We extracted 2-point spatial correlation statistics for our data.  We assumed a periodic boundary condition for both the x- and y-axis. These statistics will become the per-sample measurements we reduce via PCA. We utilized pyMKS for our pipeline. The following figure shows a single visualized spatial correlation:
 
 ![sample_correlations](/MIC-Ternary-Eutectic-Alloy/img/exec_summary/sample_correlations.png)
 
@@ -79,7 +79,7 @@ Reducing the input to only two spatial correlations (vs. 6) is a huge space savi
 ##Final PCA Results - Steady State
 PCA components of a single simulation over time
 ![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/PCA_over_block_allstats.png)
-Wild oscillations occur in our data until the early 120s timesteps. For our steady-state investigation, we do not use any of the microstructures in the first 150 timesteps, where we see very small osciallations in PC1 and PC2, representative of steady-state condition.
+Wild oscillations occur in our data until the early 120s time steps. For our steady-state investigation, we do not use any of the microstructures in the first 150 time steps, where we see very small oscillations in PC1 and PC2, representative of steady-state condition.
 
 ##Process-Property Linkage Model
 We tried multiple models to predict the linkage between process parameters and 2-point statistics.
@@ -90,7 +90,7 @@ Here's an linear model fit two the first two PCA scores.
 
 
 ##Exploring Transient Data
-We performed the same 2 spatial correlations and PCA on our transient data, which we limited to first 100 timesteps. In the below PCA plot for one simulation dataset, we see that initially PCA scores vary highly (color gradient as above plot). With time, the PCA scores approach a steady state in regions between time 100-120. 
+We performed the same 2 spatial correlations and PCA on our transient data, which we limited to first 100 time steps. In the below PCA plot for one simulation dataset, we see that initially PCA scores vary highly (color gradient as above plot). With time, the PCA scores approach a steady state in regions between time 100-120. 
 ![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/PCA_over_transient.png)
 
 We also compared PCA results using all 2p spatial correlations and only two (Al-Al, Ag<sub>2</sub>Al-Ag<sub>2</sub>Al). PCA scores follow the same trend. There is some scaling in the PC1 and PC2 scores, with PC1 affected very little. Since PC1 contains more than 90% of the variance in the data, we decided that using only two spatial correlations is sufficient. Reducing the input to PCA in transient data is important to keep computing cost reasonable, since each dataset now contains 100 times more data than transient.
