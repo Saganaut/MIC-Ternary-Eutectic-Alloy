@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:     	Executive Summary (In Progress)
+title:     	Executive Summary
 date:      	2015-12-05
 author:     Almambet Iskakov, Robert Pienta
 ---
@@ -17,7 +17,7 @@ author:     Almambet Iskakov, Robert Pienta
 <!-- Start Writing Below in Markdown -->
 
 ##Project Objectives
-Create a model linking our simulated process data with a representation of the steady-state microstructures.
+Create a model linking our simulated process data with a representation of the steady-state microstructures.  Further detail on each step to achieving this objective is provided below (in summa) and in greater detail in our posts.
 
 ###Description
 Our data is a product of a phase-field simulations on the microstructure evolution in directional solidification of a aluminum-silver-copper ternary eutectoid alloy. The data consists of 21 datasets, while each dataset contains the microstructure information through time, from beginning of simulation to steady state. The simulations include varied concentrations and solidification velocities, but the same initial microstructure. The data was provided from Karlsruhe Institute of Technology in Germany to Georgia Tech for collaboration.
@@ -41,12 +41,12 @@ Almambet comes from the Mechanical Engineering department, while Robert comes fr
 We had useful discussions with Dr Kalidindi, Yuskel Yabansu, and David Brough on our project throughtout the semester.
 
 ##Challenges
-There were fewer process (input) variables into the simulation than we expected, which would be helpful in creating a process-structure model. There are only two process parameters that were available to us: concentration and solidification velocity. Since concentration of Al was always constant, concentration of either Ag or Cu would be sufficient to know the concentration of the whole material.
+There were fewer process (input) variables into the simulation than we expected, which would be helpful in creating a robust process-structure model. There are only two process parameters that were available to us: concentration and solidification velocity. Since concentration of Al was always constant, concentration of either Ag or Cu would be sufficient to know the concentration of the whole material.
 
 At the beginning of the project we were expecting a large set of data based on the simulations metadata. However, as the semester progressed, we realized that our data was capped at 21 datasets. And since these simulations were performed by collaborators at Karlsruhe Institute of Technology in Germany, we were limited to what received.
 
 ##2 Point Statistics
-We extracted 2-point spatial correlation statistics for our data.  We assumed a periodic boundary condition for both the x- and y-axis. These statistics will become the per-sample measurements we reduce via PCA. We utilized pyMKS for our pipeline. The following figure shows a single visualized spatial correlation:
+We extracted 2-point spatial correlation statistics for our data.  We assumed a periodic boundary condition for both the x- and y-axis. These statistics would become the per-sample measurements we reduce via PCA. We utilized pyMKS for our pipeline. The following figure shows a single visualized spatial correlation:
 
 ![sample_correlations](/MIC-Ternary-Eutectic-Alloy/img/exec_summary/sample_correlations.png)
 
@@ -54,14 +54,12 @@ We extracted 2-point spatial correlation statistics for our data.  We assumed a 
 Each 2-point statistic is an 800x800 field showing phase-phase correlations. Not all of this region is likely to be statistically meaningful, so we investigated which resolutions of 2-pt statistics offered a good balance between computational speed and accuracy. The truncation is done symmetrically, which is consistent with a our periodic assumption.
 ![vector_size](/MIC-Ternary-Eutectic-Alloy/img/truncation/truncation_schematic.png)
 
-The following plot demonstrates the amount of statistically significant measurements in the cut region. 
+The following plot demonstrates the amount of statistically significant measurements in the cut region.
 ![combined_violation](/MIC-Ternary-Eutectic-Alloy/img/truncation/combined_violations.png)
-
-
 
 ##Principal Component Analysis (PCA)
 We used PCA to reduce the large 2-pt statistics to a low rank representation.
-Our data exhibit reasonable variance falloff.
+Our data exhibit reasonable variance falloff; demonstrated in the following cumulative Scree plot.
 
 ![decay](/MIC-Ternary-Eutectic-Alloy/img/exec_summary/decay.png)
 
@@ -77,9 +75,9 @@ Reducing the input to only two spatial correlations (vs. 6) is a huge space savi
 
 
 ##Final PCA Results - Steady State
-PCA components of a single simulation over time
+PCA components of a single simulation over time:
 ![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/PCA_over_block_allstats.png)
-Wild oscillations occur in our data until the early 120s time steps. For our steady-state investigation, we do not use any of the microstructures in the first 150 time steps, where we see very small oscillations in PC1 and PC2, representative of steady-state condition.
+Wild oscillations occur in our data until about 150 time steps. For our steady-state investigation, we do not use any of the microstructures in the first 150 time steps, we wait for this period so that oscillations in PC1 and PC2 are miniscule, representative of a steady-state condition.
 
 ##Process-Property Linkage Model
 We tried multiple models to predict the linkage between process parameters and 2-point statistics.
@@ -90,16 +88,16 @@ Here's an linear model fit two the first two PCA scores.
 
 
 ##Exploring Transient Data
-We performed the same 2 spatial correlations and PCA on our transient data, which we limited to first 100 time steps. In the below PCA plot for one simulation dataset, we see that initially PCA scores vary highly (color gradient as above plot). With time, the PCA scores approach a steady state in regions between time 100-120. 
+We performed the same 2 spatial correlations and PCA on our transient data, which we limited to first 100 time steps. In the below PCA plot for one simulation dataset, we see that initially PCA scores vary highly (color gradient as above plot). With time, the PCA scores approach a steady state in regions between time 100-120.
 ![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/PCA_over_transient.png)
 
-We also compared PCA results using all 2p spatial correlations and only two (Al-Al, Ag<sub>2</sub>Al-Ag<sub>2</sub>Al). PCA scores follow the same trend. There is some scaling in the PC1 and PC2 scores, with PC1 affected very little. Since PC1 contains more than 90% of the variance in the data, we decided that using only two spatial correlations is sufficient. Reducing the input to PCA in transient data is important to keep computing cost reasonable, since each dataset now contains 100 times more data than transient.
+We also compared PCA results using all 2-pt spatial correlations and only two (Al-Al, Ag<sub>2</sub>Al-Ag<sub>2</sub>Al). PCA scores follow the same trend. There is some scaling in the PC1 and PC2 scores, with PC1 affected very little. Since PC1 contains more than 90% of the variance in the data, we decided that using only two spatial correlations is sufficient. Reducing the input to PCA in transient data is important to keep computing cost reasonable, since each dataset now contains 100 times more data than steady-state investigation.
 ![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/full_corr_vs_2_corr.png)
 
 ##Summary
-This project was a great step towards continued collaboration in creating PSP linkage for ternary Al-Al-Cu alloys. A data-science approach was used to model the process-structure relation. Considering this is a new and ongoing study, there is a wide range of possible studies as more simulation studies are performed. In the near future, we hope to include including transient response to create a more comprehensive model.
+This project is a great step towards continued collaboration in creating PSP linkage for ternary Al-Ag-Cu alloys. A data-science approach was used to model the process-structure relation. Considering this is a new and ongoing study, there is a wide range of possible studies as more simulation studies are performed. In the near future, we hope to include including transient response to create a more comprehensive model.
 
 ##Acknowledgements
 We would like to thank Dr. Surya Kalidindi, Yuksel Yabansu, David Brough, and Ahmet Cecen.
- 
+
 
