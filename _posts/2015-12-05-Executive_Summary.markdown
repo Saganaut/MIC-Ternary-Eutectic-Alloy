@@ -47,7 +47,6 @@ Other challenges.
 ##2 Point Statistics
 We extracted 2-point spatial correlation statistics for our data.  We assumed a periodic boundary condition for both the x- and y-axis. These statistics will become the per-sample measurements we reduce via PCA. We utilized pyMKS for our pipeline. The following figure shows a single visualzed spatial correlation:
 
-SAMPLE STATS HERE 
 
 
 ##2 Point Statistics Optimization
