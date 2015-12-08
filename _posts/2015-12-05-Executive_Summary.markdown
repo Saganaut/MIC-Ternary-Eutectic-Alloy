@@ -35,13 +35,11 @@ The microstructure consists of 3 phases, Al, Al-Ag, and Al-Cu. Below is an amina
 
 ##Collaboration
 
+
 ##Challenges
 There were fewer process (input) variables into the simulation than we expected, which would be helpful in creating a process-structure model. There are only two process parameters that were available to us: concentration and solidification velocity. Since concentration of Al was always constant, concentration of either Ag or Cu would be sufficient to know the concentration of the whole material.
 
-Other challenges.
-
-
-
+At the beginning of the project we were expecting a large set of data based on the simulations metadata. However, as the semester progressed, we realized that our data was capped at 21 datasets. And since these simulations were performed by collaborators at Karlsruhe Institute of Technology in Germany, we were limited to what received.
 
 ##2 Point Statistics
 We extracted 2-point spatial correlation statistics for our data.  We assumed a periodic boundary condition for both the x- and y-axis. These statistics will become the per-sample measurements we reduce via PCA. We utilized pyMKS for our pipeline. The following figure shows a single visualzed spatial correlation:
