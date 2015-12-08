@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:     	Executive Summary (In Progress)
+title:     	Executive Summary 
 date:      	2015-12-05
 author:     Almambet Iskakov, Robert Pienta
 ---
