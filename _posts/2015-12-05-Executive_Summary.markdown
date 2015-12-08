@@ -91,8 +91,10 @@ Here's an linear model fit two the first two PCA scores.
 
 ##Exploring Transient Data
 We performed the same 2 spatial correlations and PCA on our transient data, which we limited to first 100 timesteps. In the below PCA plot for one simulation dataset, we see that initially PCA scores vary highly (color gradient as above plot). With time, the PCA scores approach a steady state in regions between time 100-120. 
+![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/PCA_over_transient.png)
 
 We also compared PCA results using all 2p spatial correlations and only two (Al-Al, Ag<sub>2</sub>Al-Ag<sub>2</sub>Al). PCA scores follow the same trend. There is some scaling in the PC1 and PC2 scores, with PC1 affected very little. Since PC1 contains more than 90% of the variance in the data, we decided that using only two spatial correlations is sufficient. Reducing the input to PCA in transient data is important to keep computing cost reasonable, since each dataset now contains 100 times more data than transient.
+![transient](/MIC-Ternary-Eutectic-Alloy/img/transience/full_corr_vs_2_corr.png)
 
 ##Summary
 This project was a great step towards continued collaboration in creating PSP linkage for ternary Al-Al-Cu alloys. A data-science approach was used to model the process-structure relation. Considering this is a new and ongoing study, there is a wide range of possible studies as more simulation studies are performed. In the near future, we hope to include including transient response to create a more comprehensive model.
