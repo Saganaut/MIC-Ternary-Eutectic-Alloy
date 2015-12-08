@@ -27,7 +27,7 @@ The data consist of 21 simulation results datasets, each dataset is 301 microstr
 
 ![sim_params](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/sim_params.png)
 
-The microstructure consists of 3 phases, Al, Al-Ag, and Al-Cu. Here's an example of a single simulation from our dataset.
+The microstructure consists of 3 phases, Al, Al-Ag, and Al-Cu. Below is an amination of one simulation dataset evolving through time.
 <iframe width="436" height="344" src="http://www.youtube.com/embed/ZlDdydWGbA4" frameborder="0" allowfullscreen>
 </iframe>
 * Al = Green, Ag<sub>2</sub>Al = Orange, and Al<sub>2</sub>Cu = Blue
