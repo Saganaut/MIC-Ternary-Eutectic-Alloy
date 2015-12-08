@@ -23,12 +23,11 @@ Create a model linking our simulated process data with a representation of the s
 Our data is a product of a phase field simulations on the microstructure evolution in directional solidification of a aluminum-silver-copper ternary eutectoid alloy. The data consists of 21 datasets, while each dataset contains the microstructure infomation through time, from beginning of simulation to steady state. The simulations include varied concentrations and solidification velocities, but the same initial microstructure.
 
 ##Dataset
-The data consist of 21 simulation results datasets, each dataset is 301 microstructure images with 800x800 pixel resolution. For each simulation, the concentration of Al, Ag, and Cu, and solidification velocities is specified. The microstructure image data is can be characterize in the following way 21x301x800x800 in terms of pixel information. Below is a tabulated display of the process parameters:
+The data consist of 21 simulation results datasets, each dataset is 301 microstructure images with 800x800 pixel resolution. For each simulation, the concentration of Al, Ag, and Cu, and solidification velocities is specified. The microstructure image data is can be characterize in the following way 21x301x800x800 in terms of pixel information. Below is a plot of the simulation process parameters:
 
-[Tabulated parameters go here]
+![sim_params](/MIC-Ternary-Eutectic-Alloy/img/milestone2_pres/sim_params.png)
 
-
-The microstructure consists of 3 phases, Al, Al-Ag, and Al-Cu. Here's an example of a single simulation from our dataset.
+The microstructure consists of 3 phases, Al, Al-Ag, and Al-Cu. Below is an amination of one simulation dataset evolving through time.
 <iframe width="436" height="344" src="http://www.youtube.com/embed/ZlDdydWGbA4" frameborder="0" allowfullscreen>
 </iframe>
 * Al = Green, Ag<sub>2</sub>Al = Orange, and Al<sub>2</sub>Cu = Blue
@@ -36,13 +35,11 @@ The microstructure consists of 3 phases, Al, Al-Ag, and Al-Cu. Here's an example
 
 ##Collaboration
 
+
 ##Challenges
 There were fewer process (input) variables into the simulation than we expected, which would be helpful in creating a process-structure model. There are only two process parameters that were available to us: concentration and solidification velocity. Since concentration of Al was always constant, concentration of either Ag or Cu would be sufficient to know the concentration of the whole material.
 
-Other challenges.
-
-
-
+At the beginning of the project we were expecting a large set of data based on the simulations metadata. However, as the semester progressed, we realized that our data was capped at 21 datasets. And since these simulations were performed by collaborators at Karlsruhe Institute of Technology in Germany, we were limited to what received.
 
 ##2 Point Statistics
 We extracted 2-point spatial correlation statistics for our data.  We assumed a periodic boundary condition for both the x- and y-axis. These statistics will become the per-sample measurements we reduce via PCA. We utilized pyMKS for our pipeline. The following figure shows a single visualzed spatial correlation:
