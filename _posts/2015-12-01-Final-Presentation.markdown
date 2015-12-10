@@ -22,6 +22,31 @@ vertical:		</section><section markdown="1">
 {% raw  %}{% endraw %} {{ page.horizontal }}
 <!-- Start Writing Below in Markdown -->
 
+**Preface**
+
+1. Quantifying Microstructures 
+2. Dimensionality Reduction
+
+<br>
+**Ternary Eutectoid Aluminum Alloys**
+
+3. Introduction to Our Project
+4. Objectives
+5. Data
+6. Approach and Methodology
+7. Results
+
+{{ page.horizontal}}
+
+## Quantifying Microstructures
+2-point Statistics (Preface)
+
+{{ page.horizontal}}
+
+## Dimensionality Reduction
+
+
+
 ## Ternary Eutectoid Al Alloys
 * Directional Solidification of Al, Ag, Cu Eutectic Alloy
  * Control structure during solidification process
