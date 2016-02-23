@@ -30,6 +30,7 @@ from sklearn.grid_search import GridSearchCV
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import r2_score, make_scorer, mean_squared_error
 
 # Just loads the data from the .mat file in dropbox
 def load_data(filename):
@@ -72,17 +73,17 @@ def get_best_slice(al_data_slice):
   return al_data_slice[-10:-9]
 
 
-def plot_component_variance(x, y):
-  prim_basis = PrimitiveBasis(n_states=3, domain=[0, 2])
-  model = MKSHomogenizationModel(basis=prim_basis)
-  model.n_components = 20
-  model.fit(x, y, periodic_axes=[0, 1])
+def plot_component_variance(y):
+  pca = PCA(n_components=12)
+  y_pca = pca.fit_transform(y)
   # Draw the plot containing the PCA variance accumulation
-  draw_component_variance(model.dimension_reducer.explained_variance_ratio_)
+  draw_component_variance(pca.explained_variance_ratio_)
 
 def run_conventional_linkage(x, y, n_comps, linker_model, verbose=0, k_folds=3):
   print "---->Cross validating"
-  cvs = cross_val_score(linker_model, x, y, cv=k_folds, scoring='r2', verbose=verbose)
+  r2_scorer = make_scorer(r2_score, multioutput = 'variance_weighted')
+#  mse_scorer = make_scorer(mean_squared_error, multioutput = 'variance_weighted')
+  cvs = cross_val_score(linker_model, x, y, cv=k_folds, scoring=r2_scorer, verbose=verbose)
   mse = cross_val_score(linker_model, x, y, cv=k_folds, scoring='mean_squared_error', verbose=verbose)
   print '---->R2: ', np.mean(cvs)
   print '---->MSE: ', np.mean(mse)
@@ -187,15 +188,13 @@ def plot_transient_time_variation(block, n_comps=3):
   quit()
 
 def plot_regression_function(model, x, y, label=None):
-  s_plot = np.linspace(0.0525, 0.091, 100)
-  ag_plot = np.linspace(0.237, 0.2433, 100)
-  synth_data = np.zeros((100,2))
+  s_plot = np.linspace(np.min(x[:,1]), np.max(x[:,1]), 10)
+  ag_plot = np.linspace(np.min(x[:,0]), np.max(x[:,0]), 10)
+  synth_data = np.zeros((10,2))
   synth_data[:, 0] = ag_plot
   synth_data[:, 1] = s_plot
   f, (ax, ax1) = plt.subplots(2,1)
   ax.set_title('PCA 1 vs Inputs')
-  print x.shape
-  print y.shape
   ax.scatter(x[:,1], y[:,0],  color='black')
   preds = model.predict(synth_data)
   ax.plot(s_plot, preds[:,0], color='red', label=label)
@@ -209,33 +208,31 @@ def plot_regression_function(model, x, y, label=None):
 
   plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
   plt.show()
-  quit()
 
 
-def plot_components(x, y, n_comps, linker_model, verbose=2):
-  prim_basis = PrimitiveBasis(n_states=3, domain=[0, 2])
-  model = MKSHomogenizationModel(basis=prim_basis,
-                                 property_linker=linker_model)
-  model.n_components = 5
-  model.fit(x,y,periodic_axes=[0,1])
-
-  print model.property_linker.coef_
-  draw_components([model.reduced_fit_data[0:3, :2],
-                   model.reduced_fit_data[3:6, :2],
-                   model.reduced_fit_data[6:9, :2],
-                   model.reduced_fit_data[9:11, :2],
-                   model.reduced_fit_data[11:14, :2],
-                   model.reduced_fit_data[14:16, :2],
-                   model.reduced_fit_data[16:17, :2],
-                   model.reduced_fit_data[17:18, :2]],
-                   ['Ag:0.237	Cu:0.141	v:0.0525',
-                    'Ag:0.237	Cu:0.141	v:0.0593',
-                    'Ag:0.237	Cu:0.141	v:0.0773',
-                    'Ag:0.237	Cu:0.141	v:0.0844',
-                    'Ag:0.239	Cu:0.138	v:0.0791',
-                    'Ag:0.239	Cu:0.138	v:0.0525',
-                    'Ag:0.237	Cu:0.141	v:0.0914',
-                    'Ag:0.237	Cu:0.141	v:0.0512'])
+def plot_components(x):
+  draw_components([x[0:3, :2],
+                   x[3:6, :2],
+                   x[6:9, :2],
+                   x[9:12, :2],
+                   x[12:13, :2],
+                   x[13:14, :2],
+                   x[14:17, :2],
+                   x[17:18, :2],
+                   x[18:19, :2],
+                   x[19:20, :2],
+                   x[20:21, :2]],
+                   ['Ag:0.237 v:0.0525',
+                    'Ag:0.237 v:0.0593',
+                    'Ag:0.237 v:0.0773',
+                    'Ag:0.237 v:0.0844',
+                    'Ag:0.239 v:0.0659',
+                    'Ag:0.243 v:0.0659',
+                    'Ag:0.239 v:0.0791',
+                    'Ag:0.239 v:0.0525',
+                    'Ag:0.243 v:0.0525',
+                    'Ag:0.237 v:0.0914',
+                    'Ag:0.237 v:0.0512'])
 
 def plot_a_tree(clf):
   from sklearn.externals.six import StringIO
@@ -274,16 +271,22 @@ def compute_correlations(x, correlations=None, compute_flat=True):
     return x_corr, x_corr_flat
   return x_corr
 
-def test_polynomial_fits(x, y, n_comps, model, k_folds=3):
-  for i in range(1,6):
+def test_polynomial_fits(x, y, n_comps, model, k_folds=3, csvwriter=None):
+  for i in range(2,6):
     poly = PolynomialFeatures(degree=i)
     poly_x = poly.fit_transform(x)
     r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(poly_x, y, n_comps, model)
     print r2_mean, r2_std, mse_mean, mse_std
+    if csvwriter != None:
+      if i == 2: name = 'QuadraticReg'
+      elif i == 3: name = 'CubicReg'
+      elif i == 4: name = 'QuarticReg'      
+      elif i == 5: name = 'QuinticReg'      
+      csvwriter.writerow([name, mse_mean, mse_std])
     print
 
-def compute_pca_scores(x_flat):
-  pca = PCA(n_components=5)
+def compute_pca_scores(x_flat, n_comps=5):
+  pca = PCA(n_components=n_comps)
   x_pca = pca.fit(x_flat).transform(x_flat)
   return x_pca
 
@@ -305,8 +308,8 @@ def test_correlation_combos(x,y):
     params = {'fit_intercept':(True, False)}
     opt_model = run_gridcv_linkage(y,x_pca,linker,params)
     r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,opt_model)
-    results_mat[subset[0], subset[1]] = r2_mean
-    results_mat[subset[1], subset[0]] = r2_mean
+    results_mat[subset[0], subset[1]] = abs(mse_mean)
+    results_mat[subset[1], subset[0]] = abs(mse_mean)
 
   # Plot the results
   fig, ax = plt.subplots()
@@ -326,84 +329,28 @@ def write_pca_to_csv(pcas, title=""):
     for row in pcas:
       spamwriter.writerow(row)
 
-
-  #~~~~~~~MAIN~~~~~~~
-if __name__ == '__main__':
-  # Load the metadata
-  print "-->Loading Metadata"
-  metadata = load_metadata('data/metadata_all.tsv')
-  # metadata = load_metadata('data/metadata_all_no_funny_bizness.tsv')
-
-  if os.path.isfile('cache/x_y_data.pgz'):
-    print "-->Pickle found, loading x and y directly"
-    with gzip.GzipFile('cache/x_y_data.pgz', 'r') as f:
-      x, y = pickle.load(f)
-  else:
-    if not os.path.isdir('cache'):
-      os.mkdir('cache')
-    # Set up the inputs and output containers
-    samples = len(metadata)
-    x=np.ndarray(shape=(samples, metadata[0]['x'], metadata[0]['y']))
-    y=np.ndarray(shape=(samples, 2))
-    solid_vel=np.ndarray(shape=(samples, 3))
-
-    # For each sample sim in our dataset:
-    print "-->Constructing X"
-    i = 0
-    for metadatum in metadata:
-      # Load data frames
-      print "--->Loading: " + metadatum['filename']
-      al_chunk = load_data('data/test/'+metadatum['filename'])
-      # Get a representative slice from the block (or ave or whatever we decide on)
-      best_slice = get_best_slice(al_chunk)
-      x[i] = best_slice
-      y[i,0] = metadatum['ag']
-      #y[i,1] = metadatum['cu']
-      y[i,1] = metadatum['sv']
-      solid_vel[i] = metadatum['sv']
-      i += 1
-    print "-->Pickling x and y"
-    with gzip.GzipFile('cache/x_y_data.pgz', 'w') as f:
-      pickle.dump((x,y), f)
-
-  # Test correlation params
-  # test_correlation_combos(x,y)
-
-  # Plot blocks time varying behavior in PCA space.
-#  plot_sample_time_variation(load_data('data/test/'+metadata[0]['filename']))
-
-  # Plot blocks time varying behavior in PCA space.
-#  plot_transient_time_variation(load_data('data/test/'+metadata[0]['filename']))
-
-
-  # PCA component variance plot
-  #plot_component_variance(x, y[:,2])
-
-  # Plot components in pca space
-#  plot_components(x,y, 5, linear_model.LinearRegression())
-
-  x_corr, x_corr_flat = compute_correlations(x, correlations=[(0,0),(0,2)])
-  # Use PCA on flattened correlations
-  x_pca = compute_pca_scores(x_corr_flat)
-  write_pca_to_csv(x_pca, '_steady_state')
-# LINEAR
+def train_test_all_models(x_pca, y, plot_regression=False, filetag=''):
+  # LinearModel
   print "-->Optimizing Linkers"
-  with open('data/linker_results_r2_data.csv', 'w') as csv_file:
+  with open('data/linker_results_r2_data'+filetag+'.csv', 'w') as csv_file:
     csv_writer = csv.writer(csv_file, delimiter=',')
 
-    with open('data/linker_results_mse_data.csv', 'w') as csv_file_mse:
+    with open('data/linker_results_mse_data'+filetag+'.csv', 'w') as csv_file_mse:
       csv_writer_mse = csv.writer(csv_file_mse, delimiter=',')
       print "--->LinearRegression"
       linker = linear_model.LinearRegression()
       params = {'fit_intercept':(True, False)}
       opt_model = run_gridcv_linkage(y,x_pca,linker,params)
       print('---->Use Intercept: '), (opt_model.best_estimator_.fit_intercept)
-      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,opt_model)
+      print('---->Normalize: '), (opt_model.best_estimator_.normalize)
+      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,3,opt_model)
       csv_writer.writerow(['LinearRegression', r2_mean, r2_std])
       csv_writer_mse.writerow(['LinearRegression', mse_mean, mse_std])
-      plot_regression_function(opt_model.best_estimator_, y, x_pca[:, :2], 'LinearModel')
-
-      test_polynomial_fits(y,x_pca,5,opt_model)
+      print opt_model.best_estimator_.coef_
+      if plot_regression:
+        plot_regression_function(opt_model.best_estimator_, y, x_pca[:, :2], 'LinearModel')
+      print "--->Polynomial fits"
+      test_polynomial_fits(y,x_pca,5,opt_model, csvwriter=csv_writer_mse)
       print
       print "--->Lasso"
       linker = linear_model.Lasso()
@@ -447,68 +394,122 @@ if __name__ == '__main__':
       csv_writer.writerow(['TreeRegressor', r2_mean, r2_std])
       csv_writer_mse.writerow(['TreeRegressor', mse_mean, mse_std])
 
-      print "--->RandomForest"
-      linker = RandomForestClassifier()
-      params = {'n_estimators':range(1,100,10)}
-      opt_model = run_gridcv_linkage(y,x_pca,linker,params)
-      print('---->n_est:'), (opt_model.best_estimator_.n_estimators)
-      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,opt_model)
+#      print "--->RandomForest"
+#      linker = RandomForestClassifier()
+#      params = {'n_estimators':range(1,100,10)}
+#      opt_model = run_gridcv_linkage(y,x_pca,linker,params)
+#      print('---->n_est:'), (opt_model.best_estimator_.n_estimators)
+#      r2_mean, r2_std, mse_mean, mse_std = run_conventional_linkage(y,x_pca,5,opt_model)
 
-
-
-  quit()
-
-
-
-  print "-->Constructing Correlations"
-  prim_basis = PrimitiveBasis(n_states=3, domain=[0,2])
-  x_ = prim_basis.discretize(x)
-  x_corr = correlate(x_, periodic_axes=[0, 1])
-  x_corr_flat = np.ndarray(shape=(samples,  x_corr.shape[1]*x_corr.shape[2]*x_corr.shape[3]))
+def trim_corrs(x_corr, radius=200):
+  print "--->Trimming Corrs"
+  x_corr_flat = np.ndarray(shape=(x.shape[0],  radius*radius*4*x_corr.shape[3]))
   row_ctr = 0
+  start = x_corr.shape[1]/2-radius
+  end = x_corr.shape[1]/2+radius
   for row in x_corr:
-    x_corr_flat[row_ctr] = row.flatten()
+    x_corr_flat[row_ctr] = row[start:end, start:end, :].flatten()
+    row_ctr += 1
+  print x_corr_flat
+  return x_corr_flat
 
-  print x.shape
-  flat_len = (x.shape[0],) + (np.prod(x.shape[1:]),)
-  X_train, X_test, y_train, y_test = train_test_split(x.reshape(flat_len), y,
-                                                    test_size=0.2, random_state=3)
-  print(x_corr.shape)
-  print(X_test.shape)
-  # uncomment to view one containers
-  #draw_correlations(x_corr[0].real)
+def legendre_expansion(y, terms=3): 
+  y_leg = np.zeros((y.shape[0], y.shape[1]*terms))
+  row_ind = 0
+  for row in y:
+    feat_ind = 0
+    for feat in row:
+      for i in range(terms):
+        legendre = np.polynomial.legendre.Legendre.basis(i).convert(kind=np.polynomial.Polynomial)
+        y_leg[row_ind, feat_ind+i] = legendre(feat)/(2*i+1)
+#        print feat, i, legendre(feat)/(2*i+1)
+      feat_ind += 3
+    row_ind += 1
+  return y_leg 
 
-  # Reduce all 2-pt Stats via PCA
-  # Try linear reg on inputs and outputs
-  reducer = PCA(n_components=3)
-  linker = LinearRegression()
-  model = MKSHomogenizationModel(basis=prim_basis,
-                                 compute_correlations=False)
+  #~~~~~~~MAIN~~~~~~~
+if __name__ == '__main__':
+  # Load the metadata
+  print "-->Loading Metadata"
+  metadata = load_metadata('data/metadata_all.tsv')
+  # metadata = load_metadata('data/metadata_all_no_funny_bizness.tsv')
 
-  #model.fit(x_corr, y, periodic_axes=[0, 1])
-  # set up parameters to optimize
-  params_to_tune = {'degree': np.arange(1, 4), 'n_components': np.arange(1, 8)}
-  fit_params = {'size':x_corr_flat.shape, 'periodic_axes': [0, 1]}
-  loo_cv = LeaveOneOut(samples)
-  gs = GridSearchCV(model, params_to_tune, cv=loo_cv, n_jobs=6, fit_params=fit_params).fit(x_corr_flat, y)
+  if os.path.isfile('cache/x_y_data.pgz'):
+    print "-->Pickle found, loading x and y directly"
+    with gzip.GzipFile('cache/x_y_data.pgz', 'r') as f:
+      x, y = pickle.load(f)
+  else:
+    if not os.path.isdir('cache'):
+      os.mkdir('cache')
+    # Set up the inputs and output containers
+    samples = len(metadata)
+    x=np.ndarray(shape=(samples, metadata[0]['x'], metadata[0]['y']))
+    y=np.ndarray(shape=(samples, 2))
+    solid_vel=np.ndarray(shape=(samples, 3))
 
-  # Manual fit
-  #model.fit(x_corr, y, periodic_axes=[0, 1])
-  #print model.reduced_fit_data
+    # For each sample sim in our dataset:
+    print "-->Constructing X"
+    i = 0
+    for metadatum in metadata:
+      # Load data frames
+      print "--->Loading: " + metadatum['filename']
+      al_chunk = load_data('data/test/'+metadatum['filename'])
+      # Get a representative slice from the block (or ave or whatever we decide on)
+      best_slice = get_best_slice(al_chunk)
+      x[i] = best_slice
+      y[i,0] = metadatum['ag']
+      #y[i,1] = metadatum['cu']
+      y[i,1] = metadatum['sv']
+      solid_vel[i] = metadatum['sv']
+      i += 1
+    print "-->Pickling x and y"
+    with gzip.GzipFile('cache/x_y_data.pgz', 'w') as f:
+      pickle.dump((x,y), f)
 
-  # Draw the plot containing the PCA variance accumulation
-  #draw_component_variance(model.dimension_reducer.explained_variance_ratio_)
 
-  draw_components([model.reduced_fit_data[0:3, :2],
-                   model.reduced_fit_data[3:6, :2],
-                   model.reduced_fit_data[6:9, :2],
-                   model.reduced_fit_data[9:11, :2]], ['0.0525', '0.0593', '0.0773','0.0844'])
-  print('Order of Polynomial'), (gs.best_estimator_.degree)
-  print('Number of Components'), (gs.best_estimator_.n_components)
-  print('R-squared Value'), (gs.score(X_test, y_test))
 
-  #draw_components([model.reduced_fit_data[0:3, :2],
-  #                 model.reduced_fit_data[3:6, :2],
-  #                 model.reduced_fit_data[6:9, :2],
-  #                 model.reduced_fit_data[9:11, :2],
-  #                 model.reduced_fit_data[11:, :2]], ['0.0525', '0.0593', '0.0773','0.0844', '>0.6'])
+  # Test correlation params
+#  test_correlation_combos(x,y)
+
+  # Plot blocks time varying behavior in PCA space.
+#  plot_sample_time_variation(load_data('data/test/'+metadata[0]['filename']))
+
+  # Plot blocks time varying behavior in PCA space.
+#  plot_transient_time_variation(load_data('data/test/'+metadata[0]['filename']))
+
+
+  # Plot components in pca space
+#  plot_components(x,y, 5, linear_model.LinearRegression())
+
+  x_corr, x_corr_flat = compute_correlations(x, correlations=[(0,0),(0,2)])
+
+  
+  # PCA component variance plot
+  #plot_component_variance(x_corr_flat)
+
+ # Use PCA on flattened correlations
+  x_pca = compute_pca_scores(x_corr_flat, n_comps=2)
+  write_pca_to_csv(x_pca, '_steady_state')
+  # Test and Train our models
+  train_test_all_models(x_pca, y)
+
+  
+  # Trimming Test
+  print "========= TESTING TRIMMING ========="
+  x_corr_trimmed = trim_corrs(x_corr, 250)
+  x_pca_trimmed = compute_pca_scores(x_corr_trimmed, n_comps=2)
+  write_pca_to_csv(x_pca_trimmed, '_steady_state_trimmed')
+  train_test_all_models(x_pca_trimmed, y, filetag = '_trimmed')
+  plot_component_variance(x_corr_trimmed)
+  plot_components(x_pca_trimmed)
+
+  
+  # Normalization Test
+#  print "========= TESTING NORMALIZATION =========" 
+  #y_norm = StandardScaler().fit_transform(y)
+  #train_test_all_models(x_pca, y_norm)
+
+
+  # Create Legendre y variance
+#  y_leg = legendre_expansion(y,terms=3)
+#  train_test_all_models(x_pca, y_leg)

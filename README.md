@@ -1,5 +1,5 @@
 # MIC-Ternary-Eutectic-Alloy
-project page files  
+project page files
 
 
 In order to run the smart pipeline:
