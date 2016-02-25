@@ -23,7 +23,7 @@ from pymks.tools import draw_component_variance
 from pymks.tools import draw_components
 from pymks.tools import draw_gridscores_matrix
 
-from sklearn import linear_model, svm, tree
+from sklearn import linear_model, svm, tree, manifold
 from sklearn.cross_validation import train_test_split, cross_val_score, LeaveOneOut
 from sklearn.decomposition import PCA
 from sklearn.grid_search import GridSearchCV
@@ -31,6 +31,8 @@ from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import r2_score, make_scorer, mean_squared_error
+
+import simplejson as json
 
 # Just loads the data from the .mat file in dropbox
 def load_data(filename):
@@ -427,6 +429,53 @@ def legendre_expansion(y, terms=3):
     row_ind += 1
   return y_leg 
 
+
+def reduce_dimensionality(x_flat, dr, n_components=2, n_neighbors=2):
+  if dr == 'pca':
+    return PCA(n_components=n_components).fit(x_flat).transform(x_flat)
+  elif dr[:3] == 'lle':
+    if dr[4:] == 'hessian':
+      n_neighbors = 6
+    return manifold.LocallyLinearEmbedding(n_neighbors, 
+                                           n_components,
+                                           eigen_solver='auto',
+                                           method=dr[4:]).fit_transform(x_flat)
+  elif dr == 'tsne':
+    return manifold.TSNE(n_components=n_components, init='pca', random_state=0).fit_transform(x_flat)
+  elif dr == 'isomap':
+    return manifold.Isomap(n_neighbors, n_components).fit_transform(x_flat)
+  elif dr == 'mds':
+    return manifold.MDS(n_components, max_iter=100, n_init=1).fit_transform(x_flat)
+  else:
+    print 'Invalid Dim. reduction type: ' + dr
+    quit()
+
+def create_json_for_dr(x_flat, y):
+  json_data = []
+  groups = {}
+  ctr = 0 
+  for punct in y:
+    json_data.append({'name':str(punct[0])+'-'+str(punct[1]), 'features':{'vs':punct[1], 'ag':punct[0]}}) 
+    if not (json_data[-1]['name'] in groups.keys()):
+      groups[json_data[-1]['name']] = ctr
+      ctr += 1  
+
+  dr_techniques = ['pca', 'lle-standard', 'tsne', 'isomap', 'mds', 'lle-ltsa', 'lle-hessian', 'lle-modified']
+  for dr in dr_techniques:
+    print '---->Doing ' + dr;
+    x_dr = reduce_dimensionality(x_corr_flat, dr)
+    ctr = 0
+    for val in x_dr:
+      print val
+      json_data[ctr][dr] = {'x':val[0], 'y':val[1]}
+      ctr += 1
+  for point in json_data:
+    point['features']['group'] = groups[point['name']]
+  for point in groups.keys():  
+    print point
+  with open('dr.json', 'w') as f:
+    f.write(json.dumps(json_data))
+
   #~~~~~~~MAIN~~~~~~~
 if __name__ == '__main__':
   # Load the metadata
@@ -467,7 +516,6 @@ if __name__ == '__main__':
       pickle.dump((x,y), f)
 
 
-
   # Test correlation params
 #  test_correlation_combos(x,y)
 
@@ -487,9 +535,15 @@ if __name__ == '__main__':
   # PCA component variance plot
   #plot_component_variance(x_corr_flat)
 
- # Use PCA on flattened correlations
+  create_json_for_dr(x_corr_flat, y)
+  
+  #train_test_all_models(x_pca, y)
+
+
+  quit()
+# Use PCA on flattened correlations
   x_pca = compute_pca_scores(x_corr_flat, n_comps=2)
-  write_pca_to_csv(x_pca, '_steady_state')
+#  write_pca_to_csv(x_pca, '_steady_state')
   # Test and Train our models
   train_test_all_models(x_pca, y)
 
